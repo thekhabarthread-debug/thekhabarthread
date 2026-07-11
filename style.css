@@ -1,4 +1,6 @@
-/* ========= THE KHABAR THREAD ========= */
+/* ===========================
+   THE KHABAR THREAD v1
+=========================== */
 
 *{
 margin:0;
@@ -8,113 +10,192 @@ box-sizing:border-box;
 
 body{
 font-family:'Noto Sans',sans-serif;
-background:#F8F3EB;
+background:#F5ECE5;
 color:#111;
 }
 
-header{
-background:#F8F3EB;
-padding:15px 0;
+.container{
+width:92%;
+max-width:1300px;
+margin:auto;
+}
+
+/* HEADER */
+
+.header{
+background:#F5ECE5;
+padding:20px 0;
+border-bottom:1px solid #ddd;
+}
+
+.header .top{
 text-align:center;
-border-bottom:4px solid #C8102E;
 }
 
 .logo{
-width:320px;
-max-width:90%;
+width:230px;
+display:block;
+margin:auto;
 }
 
-nav{
-background:#C8102E;
+/* MENU */
+
+.navbar{
 display:flex;
 justify-content:center;
 flex-wrap:wrap;
+gap:10px;
+background:#B71C1C;
+padding:0;
 }
 
-nav a{
+.navbar a{
 color:#fff;
 text-decoration:none;
-padding:16px 20px;
+padding:16px 22px;
 font-weight:700;
 transition:.3s;
 }
 
-nav a:hover{
-background:#990000;
+.navbar a:hover{
+background:#8D1414;
 }
+
+/* BREAKING */
 
 .breaking{
 display:flex;
+align-items:center;
 background:#111;
 color:#fff;
 }
 
 .breaking span{
-background:#C8102E;
+background:#B71C1C;
 padding:12px 20px;
 font-weight:bold;
 }
 
 .breaking marquee{
-padding:12px;
+padding-left:15px;
 }
+
+/* HERO */
 
 .hero{
-height:420px;
-background:#fff;
-display:flex;
-justify-content:center;
+display:grid;
+grid-template-columns:1.4fr 1fr;
+gap:35px;
+padding:40px 0;
 align-items:center;
-margin:25px auto;
-width:90%;
-border-radius:10px;
-box-shadow:0 10px 25px rgba(0,0,0,.08);
 }
 
+.hero-image img{
+width:100%;
+border-radius:12px;
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.category{
+display:inline-block;
+background:#B71C1C;
+color:#fff;
+padding:6px 14px;
+border-radius:30px;
+margin-bottom:15px;
+font-size:14px;
+}
+
+.hero-content h1{
+font-family:'Merriweather',serif;
+font-size:42px;
+line-height:1.3;
+margin-bottom:18px;
+}
+
+.hero-content p{
+font-size:18px;
+line-height:1.7;
+color:#444;
+margin-bottom:25px;
+}
+
+.read-btn{
+display:inline-block;
+background:#111;
+color:#fff;
+padding:14px 28px;
+text-decoration:none;
+border-radius:6px;
+font-weight:bold;
+}
+
+.read-btn:hover{
+background:#B71C1C;
+}
+
+/* NEWS GRID */
+
 .latest{
-width:90%;
-margin:auto;
+padding:30px 0 60px;
 }
 
 .latest h2{
-margin-bottom:20px;
+font-size:34px;
+margin-bottom:30px;
 }
 
 .grid{
 display:grid;
 grid-template-columns:repeat(3,1fr);
-gap:20px;
+gap:25px;
 }
 
 .card{
 background:#fff;
-padding:20px;
-border-radius:10px;
-box-shadow:0 5px 20px rgba(0,0,0,.08);
+padding:25px;
+border-radius:12px;
+box-shadow:0 8px 18px rgba(0,0,0,.08);
+transition:.3s;
 }
 
+.card:hover{
+transform:translateY(-6px);
+}
+
+.card h3{
+margin-bottom:12px;
+}
+
+/* FOOTER */
+
 footer{
-margin-top:50px;
 background:#111;
 color:#fff;
+padding:30px;
 text-align:center;
-padding:25px;
+margin-top:60px;
 }
+
+/* MOBILE */
 
 @media(max-width:900px){
 
-.grid{
-
+.hero{
 grid-template-columns:1fr;
-
 }
 
-nav{
+.grid{
+grid-template-columns:1fr;
+}
 
+.hero-content h1{
+font-size:28px;
+}
+
+.navbar{
 justify-content:flex-start;
-
-overflow:auto;
-
+overflow-x:auto;
+white-space:nowrap;
 }
-
 }
