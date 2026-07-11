@@ -1,1 +1,7 @@
-console.log("The Khabar Thread Loaded");
+fetch("data/news.json")
+.then(response => response.json())
+.then(data => {
+
+    console.log(data);
+
+});
