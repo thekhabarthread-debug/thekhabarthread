@@ -166,7 +166,7 @@ margin-bottom:30px;
 
 .grid{
 display:grid;
-grid-template-columns:repeat(3,1fr);
+grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
 gap:25px;
 }
 
@@ -217,4 +217,30 @@ justify-content:flex-start;
 overflow-x:auto;
 white-space:nowrap;
 }
+
+}
+.card-image{
+
+width:100%;
+
+height:220px;
+
+object-fit:cover;
+
+border-radius:10px;
+
+margin-bottom:15px;
+
+}
+
+.card .read-btn{
+
+margin-top:15px;
+
+display:inline-block;
+
+padding:10px 18px;
+
+font-size:14px;
+
 }
