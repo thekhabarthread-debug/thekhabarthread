@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "category": "भारत",
+    "title": "The Khabar Thread में आपका स्वागत है",
+    "summary": "यह हमारी पहली टेस्ट न्यूज़ है।",
+    "image": "assets/news/hero.jpg",
+    "date": "11 July 2026",
+    "link": "#"
+  },
+  {
+    "id": 2,
+    "category": "राजनीति",
+    "title": "दूसरी टेस्ट न्यूज़",
+    "summary": "यह दूसरी न्यूज़ है।",
+    "image": "assets/news/hero.jpg",
+    "date": "11 July 2026",
+    "link": "#"
+  }
+]
