@@ -1,0 +1,120 @@
+/* ========= THE KHABAR THREAD ========= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Noto Sans',sans-serif;
+background:#F8F3EB;
+color:#111;
+}
+
+header{
+background:#F8F3EB;
+padding:15px 0;
+text-align:center;
+border-bottom:4px solid #C8102E;
+}
+
+.logo{
+width:320px;
+max-width:90%;
+}
+
+nav{
+background:#C8102E;
+display:flex;
+justify-content:center;
+flex-wrap:wrap;
+}
+
+nav a{
+color:#fff;
+text-decoration:none;
+padding:16px 20px;
+font-weight:700;
+transition:.3s;
+}
+
+nav a:hover{
+background:#990000;
+}
+
+.breaking{
+display:flex;
+background:#111;
+color:#fff;
+}
+
+.breaking span{
+background:#C8102E;
+padding:12px 20px;
+font-weight:bold;
+}
+
+.breaking marquee{
+padding:12px;
+}
+
+.hero{
+height:420px;
+background:#fff;
+display:flex;
+justify-content:center;
+align-items:center;
+margin:25px auto;
+width:90%;
+border-radius:10px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+.latest{
+width:90%;
+margin:auto;
+}
+
+.latest h2{
+margin-bottom:20px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:20px;
+}
+
+.card{
+background:#fff;
+padding:20px;
+border-radius:10px;
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+}
+
+footer{
+margin-top:50px;
+background:#111;
+color:#fff;
+text-align:center;
+padding:25px;
+}
+
+@media(max-width:900px){
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+nav{
+
+justify-content:flex-start;
+
+overflow:auto;
+
+}
+
+}
