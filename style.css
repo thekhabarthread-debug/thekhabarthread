@@ -23,13 +23,13 @@ margin:auto;
 /* HEADER */
 
 .header{
+position:sticky;
+top:0;
+z-index:9999;
 background:#F5ECE5;
-padding:20px 0;
+padding:20px 0 0;
 border-bottom:1px solid #ddd;
-}
-
-.header .top{
-text-align:center;
+box-shadow:0 2px 12px rgba(0,0,0,.08);
 }
 
 .logo{
@@ -50,12 +50,29 @@ background:#B71C1C;
 padding:0;
 }
 
+.navbar{
+display:flex;
+justify-content:center;
+align-items:center;
+flex-wrap:wrap;
+gap:0;
+background:#B71C1C;
+height:55px;
+}
+
 .navbar a{
+display:flex;
+align-items:center;
+height:55px;
+padding:0 22px;
 color:#fff;
 text-decoration:none;
-padding:16px 22px;
 font-weight:700;
 transition:.3s;
+}
+
+.navbar a:hover{
+background:#8D1414;
 }
 
 .navbar a:hover{
