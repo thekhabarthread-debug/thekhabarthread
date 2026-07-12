@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add News</title>
 
-    <link rel="stylesheet" href="../style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add News</title>
+
+<link rel="stylesheet" href="../style.css">
+
 </head>
+
 <body>
 
 <div class="container">
@@ -23,22 +27,36 @@
 <label>Category</label>
 
 <select id="category">
+
 <option>भारत</option>
 <option>उत्तर प्रदेश</option>
 <option>राजनीति</option>
 <option>दुनिया</option>
 <option>खेल</option>
 <option>टेक</option>
+
 </select>
 
 <label>Summary</label>
+
 <textarea id="summary" rows="3"></textarea>
 
+<label>News Image</label>
+
+<input
+type="file"
+id="image"
+accept="image/*"
+required>
+
 <label>Full Article</label>
+
 <textarea id="content" rows="10"></textarea>
 
 <button type="submit" class="read-btn">
+
 Publish News
+
 </button>
 
 </form>
@@ -46,7 +64,9 @@ Publish News
 <br>
 
 <a href="dashboard.html" class="read-btn">
+
 ← Dashboard
+
 </a>
 
 </div>
