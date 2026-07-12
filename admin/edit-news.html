@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit News</title>
+
+<link rel="stylesheet" href="../style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>The Khabar Thread CMS</h1>
+
+<h2>Edit News</h2>
+
+<form id="editForm">
+
+<label>News Title</label>
+<input type="text" id="title" required>
+
+<label>Category</label>
+
+<select id="category">
+
+<option>भारत</option>
+<option>उत्तर प्रदेश</option>
+<option>राजनीति</option>
+<option>दुनिया</option>
+<option>खेल</option>
+<option>टेक</option>
+
+</select>
+
+<label>Summary</label>
+
+<textarea id="summary" rows="4"></textarea>
+
+<label>Current Image</label>
+
+<br><br>
+
+<img
+id="preview"
+style="width:250px;border-radius:10px;margin-bottom:20px;">
+
+<label>Change Image (Optional)</label>
+
+<input type="file" id="image">
+
+<label>Full Article</label>
+
+<textarea id="content" rows="12"></textarea>
+
+<button class="read-btn">
+
+Update News
+
+</button>
+
+</form>
+
+<br>
+
+<a href="all-news.html" class="read-btn">
+
+← Back
+
+</a>
+
+</div>
+
+<script type="module" src="../js/edit-news.js"></script>
+
+</body>
+
+</html>
