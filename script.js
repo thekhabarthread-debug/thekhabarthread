@@ -29,7 +29,7 @@ async function loadNews() {
 
     });
 
-    if (news.length === 0) {
+    if(news.length === 0){
 
       document.getElementById("news-grid").innerHTML =
       "<h2>No News Found</h2>";
@@ -38,23 +38,45 @@ async function loadNews() {
 
     }
 
-    // Hero
+    // =========================
+    // HERO (Featured First)
+    // =========================
+
+    const heroNews =
+      news.find(item => item.featured === true) || news[0];
 
     document.getElementById("hero-category").innerText =
-    news[0].category;
+      heroNews.category;
 
     document.getElementById("hero-title").innerText =
-    news[0].title;
+      heroNews.title;
 
     document.getElementById("hero-summary").innerText =
-    news[0].summary;
+      heroNews.summary;
 
     document.getElementById("hero-image").src =
-    news[0].image;
+      heroNews.image;
 
-    document.getElementById("hero-read").href = `news.html?id=${news[0].id}`;
+    document.getElementById("hero-read").href =
+      `news.html?id=${heroNews.id}`;
 
-    // Grid
+    // =========================
+    // BREAKING BAR
+    // =========================
+
+    const breaking =
+      news.find(item => item.breaking === true);
+
+    if(breaking){
+
+      document.getElementById("breaking-bar").innerText =
+      "🔴 " + breaking.title;
+
+    }
+
+    // =========================
+    // NEWS GRID
+    // =========================
 
     const grid = document.getElementById("news-grid");
 
