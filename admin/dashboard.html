@@ -1,96 +1,35 @@
-<!DOCTYPE html>
-<html lang="hi">
+<div class="container">
 
-<head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Admin Dashboard</title>
-
-<link rel="stylesheet" href="../style.css">
-
-</head>
-
-<body>
-
-<div class="container" style="padding:40px;">
-
-<h1>The Khabar Thread</h1>
-
-<h2>Admin Dashboard</h2>
+<h1>The Khabar Thread CMS</h1>
 
 <hr><br>
 
-<h3>Welcome Admin 🎉</h3>
-<hr><br>
+<h2>Dashboard</h2>
 
-<form id="newsForm">
+<div class="admin-menu">
 
-<label>News Title</label><br>
-<input type="text" id="title" required><br><br>
+<a href="add-news.html" class="admin-card">
+📰 Add News
+</a>
 
-<label>Category</label><br>
-<select id="category">
+<a href="all-news.html" class="admin-card">
+📄 All News
+</a>
 
-<option>भारत</option>
-<option>उत्तर प्रदेश</option>
-<option>राजनीति</option>
-<option>दुनिया</option>
-<option>खेल</option>
-<option>टेक</option>
+<a href="settings.html" class="admin-card">
+⚙ Settings
+</a>
 
-</select>
-
-<br><br>
-
-<label>Summary</label><br>
-
-<textarea id="summary" rows="3"></textarea>
-
-<br><br>
-
-<label>Thumbnail</label><br>
-
-<input type="file" id="image">
-
-<br><br>
-
-<label>Full Article</label><br>
-
-<textarea id="content" rows="10"></textarea>
-
-<br><br>
-
-<button class="read-btn" type="submit">
-
-Publish News
-
-</button>
-
-</form>
-
-<hr><br>
-
-<button id="logoutBtn" class="read-btn">
-
-Logout
-
-</button>
-
-<p>अब यहीं से पूरी वेबसाइट कंट्रोल होगी।</p>
+</div>
 
 <br>
 
 <button id="logoutBtn" class="read-btn">
+
 Logout
+
 </button>
 
 </div>
 
 <script type="module" src="../js/dashboard.js"></script>
-
-</body>
-
-</html>
