@@ -70,7 +70,7 @@ async function loadNews() {
 
       <p>${item.summary}</p>
 
-      <a href="#" class="read-btn">
+      <a href="news.html?id=${item.id}" class="read-btn">
 
       पूरा पढ़ें →
 
