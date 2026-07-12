@@ -52,18 +52,21 @@ form.addEventListener("submit", async (e) => {
         // Save News to Firestore
         await addDoc(collection(db, "news"), {
 
-            title,
-            category,
-            summary,
-            content,
-            image,
+    title,
+    category,
+    summary,
+    content,
+    image,
 
-            date: new Date().toLocaleDateString(),
+    featured: false,
 
-            createdAt: Date.now()
+    breaking: false,
 
-        });
+    date: new Date().toLocaleDateString(),
 
+    createdAt: Date.now()
+
+});
         alert("News Published Successfully ✅");
 
         form.reset();
