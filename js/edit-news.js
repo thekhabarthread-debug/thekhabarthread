@@ -13,6 +13,12 @@ const form = document.getElementById("editForm");
 
 let currentImage = "";
 
+document.getElementById("featured").checked =
+news.featured || false;
+
+document.getElementById("breaking").checked =
+news.breaking || false;
+
 async function loadNews() {
 
     const docRef = doc(db, "news", id);
@@ -74,22 +80,20 @@ form.addEventListener("submit", async (e) => {
 
     }
 
-    await updateDoc(doc(db,"news",id),{
+   await updateDoc(doc(db,"news",id),{
 
-        title:document.getElementById("title").value,
+title:document.getElementById("title").value,
 
-        category:document.getElementById("category").value,
+category:document.getElementById("category").value,
 
-        summary:document.getElementById("summary").value,
+summary:document.getElementById("summary").value,
 
-        content:document.getElementById("content").value,
+content:document.getElementById("content").value,
 
-        image:image
+image:image,
 
-    });
+featured:document.getElementById("featured").checked,
 
-    alert("News Updated Successfully");
-
-    location.href="all-news.html";
+breaking:document.getElementById("breaking").checked
 
 });
