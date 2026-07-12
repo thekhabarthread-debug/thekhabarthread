@@ -52,6 +52,8 @@ async function loadNews() {
     document.getElementById("hero-image").src =
     news[0].image;
 
+    document.getElementById("hero-read").href = `news.html?id=${news[0].id}`;
+
     // Grid
 
     const grid = document.getElementById("news-grid");
