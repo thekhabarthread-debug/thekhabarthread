@@ -1,0 +1,46 @@
+import { db } from "./firebase.js";
+
+import {
+  collection,
+  addDoc
+} from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+const form = document.getElementById("newsForm");
+
+form.addEventListener("submit", async (e) => {
+
+  e.preventDefault();
+
+  const title = document.getElementById("title").value;
+  const category = document.getElementById("category").value;
+  const summary = document.getElementById("summary").value;
+  const content = document.getElementById("content").value;
+
+  try {
+
+    await addDoc(collection(db, "news"), {
+
+      title,
+      category,
+      summary,
+      content,
+      date: new Date().toLocaleDateString(),
+      createdAt: Date.now()
+
+    });
+
+    alert("News Published Successfully");
+
+    form.reset();
+
+  }
+
+  catch (error) {
+
+    console.log(error);
+
+    alert(error.message);
+
+  }
+
+});
