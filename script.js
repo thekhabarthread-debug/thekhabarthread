@@ -1,42 +1,64 @@
-fetch("data/news.json")
-.then(response => response.json())
-.then(news => {
+import { db } from "./js/firebase.js";
 
-    // ===== HERO =====
+import {
+    collection,
+    getDocs,
+    query,
+    orderBy
+}
+from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-    document.getElementById("hero-category").innerText = news[0].category;
+const newsRef = collection(db, "news");
 
-    document.getElementById("hero-title").innerText = news[0].title;
+const q = query(newsRef, orderBy("createdAt", "desc"));
 
-    document.getElementById("hero-summary").innerText = news[0].summary;
+const snapshot = await getDocs(q);
 
-    document.getElementById("hero-image").src = news[0].image;
+const news = [];
+
+snapshot.forEach((doc) => {
+
+    news.push(doc.data());
+
+});
+
+// HERO
+
+document.getElementById("hero-category").innerText = news[0].category;
+
+document.getElementById("hero-title").innerText = news[0].title;
+
+document.getElementById("hero-summary").innerText = news[0].summary;
+
+document.getElementById("hero-image").src = news[0].image;
 
 
-    // ===== LATEST NEWS =====
+// NEWS GRID
 
-    const grid = document.getElementById("news-grid");
+const grid = document.getElementById("news-grid");
 
-    news.forEach(item=>{
+grid.innerHTML = "";
 
-        grid.innerHTML += `
+news.forEach(item => {
 
-        <div class="card">
+grid.innerHTML += `
 
-            <img src="${item.image}" class="card-image">
+<div class="card">
 
-            <h3>${item.title}</h3>
+<img src="${item.image}" class="card-image">
 
-            <p>${item.summary}</p>
+<h3>${item.title}</h3>
 
-            <a href="${item.link}" class="read-btn">
-                पूरा पढ़ें →
-            </a>
+<p>${item.summary}</p>
 
-        </div>
+<a href="#" class="read-btn">
 
-        `;
+पूरा पढ़ें →
 
-    });
+</a>
+
+</div>
+
+`;
 
 });
