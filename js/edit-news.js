@@ -13,21 +13,11 @@ const form = document.getElementById("editForm");
 
 let currentImage = "";
 
-document.getElementById("featured").checked =
-news.featured || false;
-
-document.getElementById("breaking").checked =
-news.breaking || false;
-
 async function loadNews() {
 
-    const docRef = doc(db, "news", id);
+    if (!id) {
 
-    const docSnap = await getDoc(docRef);
-
-    if (!docSnap.exists()) {
-
-        alert("News Not Found");
+        alert("News ID Not Found");
 
         location.href = "all-news.html";
 
@@ -35,16 +25,48 @@ async function loadNews() {
 
     }
 
-    const news = docSnap.data();
+    try {
 
-    currentImage = news.image;
+        const docRef = doc(db, "news", id);
 
-    document.getElementById("title").value = news.title;
-    document.getElementById("category").value = news.category;
-    document.getElementById("summary").value = news.summary;
-    document.getElementById("content").value = news.content;
+        const docSnap = await getDoc(docRef);
 
-    document.getElementById("preview").src = news.image;
+        if (!docSnap.exists()) {
+
+            alert("News Not Found");
+
+            location.href = "all-news.html";
+
+            return;
+
+        }
+
+        const news = docSnap.data();
+
+        currentImage = news.image || "";
+
+        document.getElementById("title").value = news.title || "";
+        document.getElementById("category").value = news.category || "";
+        document.getElementById("summary").value = news.summary || "";
+        document.getElementById("content").value = news.content || "";
+
+        document.getElementById("preview").src = currentImage;
+
+        document.getElementById("featured").checked =
+            news.featured || false;
+
+        document.getElementById("breaking").checked =
+            news.breaking || false;
+
+    }
+
+    catch (error) {
+
+        console.error(error);
+
+        alert("Unable to Load News");
+
+    }
 
 }
 
@@ -54,46 +76,70 @@ form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    let image = currentImage;
+    try {
 
-    const imageFile = document.getElementById("image").files[0];
+        let image = currentImage;
 
-    if(imageFile){
+        const imageFile =
+            document.getElementById("image").files[0];
 
-        const formData = new FormData();
+        if (imageFile) {
 
-        formData.append("file", imageFile);
+            const formData = new FormData();
 
-        formData.append("upload_preset", "thekhabarthread");
+            formData.append("file", imageFile);
 
-        const upload = await fetch(
-            "https://api.cloudinary.com/v1_1/m9332fjb/image/upload",
-            {
-                method:"POST",
-                body:formData
-            }
-        );
+            formData.append(
+                "upload_preset",
+                "thekhabarthread"
+            );
 
-        const imageData = await upload.json();
+            const upload = await fetch(
+                "https://api.cloudinary.com/v1_1/m9332fjb/image/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
 
-        image = imageData.secure_url;
+            const imageData = await upload.json();
+
+            image = imageData.secure_url;
+
+        }
+
+        await updateDoc(doc(db, "news", id), {
+
+            title: document.getElementById("title").value,
+
+            category: document.getElementById("category").value,
+
+            summary: document.getElementById("summary").value,
+
+            content: document.getElementById("content").value,
+
+            image: image,
+
+            featured:
+                document.getElementById("featured").checked,
+
+            breaking:
+                document.getElementById("breaking").checked
+
+        });
+
+        alert("News Updated Successfully");
+
+        location.href = "all-news.html";
 
     }
 
-   await updateDoc(doc(db,"news",id),{
+    catch (error) {
 
-title:document.getElementById("title").value,
+        console.error(error);
 
-category:document.getElementById("category").value,
+        alert(error.message);
 
-summary:document.getElementById("summary").value,
-
-content:document.getElementById("content").value,
-
-image:image,
-
-featured:document.getElementById("featured").checked,
-
-breaking:document.getElementById("breaking").checked
+    }
 
 });
