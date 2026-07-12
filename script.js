@@ -11,9 +11,10 @@ async function loadNews() {
 
   try {
 
-    const newsRef = collection(db, "news");
-
-    const q = query(newsRef, orderBy("createdAt", "desc"));
+    const q = query(
+      collection(db, "news"),
+      orderBy("createdAt", "desc")
+    );
 
     const snapshot = await getDocs(q);
 
@@ -21,56 +22,59 @@ async function loadNews() {
 
     snapshot.forEach((doc) => {
 
-      news.push(doc.data());
+      news.push({
+        id: doc.id,
+        ...doc.data()
+      });
 
     });
 
     if (news.length === 0) {
 
       document.getElementById("news-grid").innerHTML =
-        "<h2>No News Found</h2>";
+      "<h2>No News Found</h2>";
 
       return;
 
     }
 
-    // HERO
+    // Hero
 
     document.getElementById("hero-category").innerText =
-      news[0].category;
+    news[0].category;
 
     document.getElementById("hero-title").innerText =
-      news[0].title;
+    news[0].title;
 
     document.getElementById("hero-summary").innerText =
-      news[0].summary;
+    news[0].summary;
 
     document.getElementById("hero-image").src =
-      news[0].image;
+    news[0].image;
 
-    // GRID
+    // Grid
 
     const grid = document.getElementById("news-grid");
 
     grid.innerHTML = "";
 
-    news.forEach((item) => {
+    news.forEach(item=>{
 
       grid.innerHTML += `
 
       <div class="card">
 
-        <img src="${item.image}" class="card-image">
+      <img src="${item.image}" class="card-image">
 
-        <h3>${item.title}</h3>
+      <h3>${item.title}</h3>
 
-        <p>${item.summary}</p>
+      <p>${item.summary}</p>
 
-        <a href="#" class="read-btn">
+      <a href="#" class="read-btn">
 
-        पूरा पढ़ें →
+      पूरा पढ़ें →
 
-        </a>
+      </a>
 
       </div>
 
@@ -80,7 +84,7 @@ async function loadNews() {
 
   }
 
-  catch (error) {
+  catch(error){
 
     console.error(error);
 
