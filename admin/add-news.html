@@ -1,59 +1,57 @@
-import { db } from "./firebase.js";
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add News</title>
 
-import {
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
 
-collection,
+<div class="container">
 
-addDoc
+<h1>The Khabar Thread CMS</h1>
 
-}
+<h2>Add News</h2>
 
-from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+<form id="newsForm">
 
-const form=document.getElementById("newsForm");
+<label>News Title</label>
+<input type="text" id="title" required>
 
-form.addEventListener("submit",async(e)=>{
+<label>Category</label>
 
-e.preventDefault();
+<select id="category">
+<option>भारत</option>
+<option>उत्तर प्रदेश</option>
+<option>राजनीति</option>
+<option>दुनिया</option>
+<option>खेल</option>
+<option>टेक</option>
+</select>
 
-const title=document.getElementById("title").value;
+<label>Summary</label>
+<textarea id="summary" rows="3"></textarea>
 
-const category=document.getElementById("category").value;
+<label>Full Article</label>
+<textarea id="content" rows="10"></textarea>
 
-const summary=document.getElementById("summary").value;
+<button type="submit" class="read-btn">
+Publish News
+</button>
 
-const content=document.getElementById("content").value;
+</form>
 
-try{
+<br>
 
-await addDoc(collection(db,"news"),{
+<a href="dashboard.html" class="read-btn">
+← Dashboard
+</a>
 
-title,
+</div>
 
-category,
+<script type="module" src="../js/add-news.js"></script>
 
-summary,
-
-content,
-
-date:new Date().toLocaleDateString(),
-
-createdAt:Date.now()
-
-});
-
-alert("News Published Successfully");
-
-form.reset();
-
-}
-
-catch(error){
-
-console.log(error);
-
-alert(error.message);
-
-}
-
-});
+</body>
+</html>
