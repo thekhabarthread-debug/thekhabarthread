@@ -38,6 +38,22 @@
 
 </select>
 
+<br><br>
+
+<label>
+<input type="checkbox" id="featured">
+⭐ Featured News
+</label>
+
+<br><br>
+
+<label>
+<input type="checkbox" id="breaking">
+🚨 Breaking News
+</label>
+
+<br><br>
+
 <label>Summary</label>
 
 <textarea id="summary" rows="4"></textarea>
@@ -52,13 +68,16 @@ style="width:250px;border-radius:10px;margin-bottom:20px;">
 
 <label>Change Image (Optional)</label>
 
-<input type="file" id="image">
+<input
+type="file"
+id="image"
+accept="image/*">
 
 <label>Full Article</label>
 
 <textarea id="content" rows="12"></textarea>
 
-<button class="read-btn">
+<button type="submit" class="read-btn">
 
 Update News
 
