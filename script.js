@@ -1,4 +1,4 @@
-/*====================================================
+t/*====================================================
 
 THE KHABAR THREAD
 SCRIPT PART 1
@@ -20,6 +20,7 @@ query,
 orderBy
 
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+let news = [];
 
 /*========================
 LOAD NEWS
@@ -39,7 +40,7 @@ orderBy("createdAt","desc")
 
 const snapshot=await getDocs(q);
 
-const news=[];
+news = [];
 
 snapshot.forEach((doc)=>{
 
@@ -335,5 +336,3 @@ START
 ========================*/
 
 loadNews();
-
-}
