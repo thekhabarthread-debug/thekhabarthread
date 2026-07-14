@@ -1,4 +1,4 @@
-t/*====================================================
+/*====================================================
 
 THE KHABAR THREAD
 SCRIPT PART 1
@@ -20,6 +20,7 @@ query,
 orderBy
 
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
 let news = [];
 
 /*========================
@@ -271,23 +272,11 @@ box.innerHTML+=`
 
 <div class="category-content">
 
-<h3>
+<h3>${item.title}</h3>
 
-${item.title}
+<p>${item.summary}</p>
 
-</h3>
-
-<p>
-
-${item.summary}
-
-</p>
-
-<a
-
-href="news.html?id=${item.id}"
-
-class="view-more">
+<a href="news.html?id=${item.id}" class="view-more">
 
 पूरा पढ़ें →
 
@@ -303,36 +292,21 @@ class="view-more">
 
 }
 
-/*========================
-LOAD CATEGORIES
-========================*/
-
 loadCategory("भारत","india-news");
-
 loadCategory("उत्तर प्रदेश","up-news");
-
 loadCategory("दुनिया","world-news");
-
 loadCategory("राजनीति","politics-news");
-
 loadCategory("खेल","sports-news");
-
 loadCategory("टेक","tech-news");
 
-/*========================
-END TRY
-========================*/
-
-}
+} // <-- try ends here
 
 catch(error){
 
-console.error("Error Loading News :",error);
+console.error("Error Loading News:",error);
 
 }
 
-/*========================
-START
-========================*/
+} // <-- loadNews ends here
 
 loadNews();
