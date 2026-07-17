@@ -3004,3 +3004,53 @@ color:#777;
 font-weight:500;
 
 }
+
+/*=========================
+HOME AD
+=========================*/
+
+.home-ad{
+
+margin:30px 0;
+
+}
+
+#homepage-ad{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+.homepage-ad{
+
+display:block;
+
+width:100%;
+
+max-width:1200px;
+
+}
+
+.homepage-ad img{
+
+width:100%;
+
+display:block;
+
+border-radius:12px;
+
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+
+transition:.3s;
+
+}
+
+.homepage-ad img:hover{
+
+transform:scale(1.02);
+
+}
