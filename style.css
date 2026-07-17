@@ -2012,10 +2012,21 @@ SHARE BUTTONS
 ==========================*/
 
 .share-buttons{
+
 display:flex;
-gap:12px;
+
+justify-content:center;
+
 align-items:center;
+
+gap:12px;
+
 margin:20px 0;
+
+padding:0;
+
+background:none;
+
 }
 
 .share-btn{
