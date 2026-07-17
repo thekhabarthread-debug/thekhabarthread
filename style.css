@@ -7,17 +7,21 @@ Reset + Header + Navbar + Breaking
 :root{
 
 --primary:#B71C1C;
---primary-dark:#8D1414;
+--primary-dark:#8F1717;
 
---bg:#F8F5F0;
+--bg:#F3EFE8;
 
---white:#ffffff;
+--white:#FFFFFF;
 
---text:#222;
+--text:#1D1D1D;
 
---gray:#666;
+--gray:#5F6368;
 
---border:#e5e5e5;
+--border:#E6DED3;
+
+--card:#FFFFFF;
+
+--hover:#FFF6F2;
 
 --shadow:0 10px 30px rgba(0,0,0,.08);
 
