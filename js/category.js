@@ -48,10 +48,11 @@ try{
     console.log("Category:", category);
 
 const q = query(
-    collection(db, "news")
+    collection(db, "news"),
+    orderBy("createdAt", "desc")
 );
 
-const snapshot=await getDocs(q);
+const snapshot = await getDocs(q);
 console.log("Total Docs:", snapshot.size);
 
 grid.innerHTML="";
@@ -92,18 +93,55 @@ return;
 
 const filtered = [];
 
-snapshot.forEach((doc) => {
+snapshot.forEach((doc)=>{
 
-    const data = doc.data();
+const news = doc.data();
 
-    if (data.category === category) {
+if(news.category !== category) return;
 
-        filtered.push({
-            id: doc.id,
-            ...data
-        });
+total++;
 
-    }
+grid.innerHTML += `
+
+<div class="category-card">
+
+<img
+src="${news.image}"
+alt="${news.title}">
+
+<div class="category-content">
+
+<span class="category">
+
+${news.category}
+
+</span>
+
+<h3>
+
+${news.title}
+
+</h3>
+
+<p>
+
+${news.summary}
+
+</p>
+
+<a
+href="news.html?id=${doc.id}"
+class="read-btn">
+
+पूरा पढ़ें →
+
+</a>
+
+</div>
+
+</div>
+
+`;
 
 });
 
