@@ -130,27 +130,29 @@ ${news.title}
 
 <div class="share-buttons">
 
-<button id="copyLink" class="share-btn">
+<button id="copyLink" class="share-btn copy">
 
-🔗 Copy Link
+<i class="fa-solid fa-link"></i>
+
+<span>Copy</span>
 
 </button>
 
-<a id="shareWhatsapp" class="share-btn" target="_blank">
+<a id="shareWhatsapp" class="share-btn whatsapp" target="_blank">
 
-📱 WhatsApp
-
-</a>
-
-<a id="shareFacebook" class="share-btn" target="_blank">
-
-📘 Facebook
+<i class="fa-brands fa-whatsapp"></i>
 
 </a>
 
-<a id="shareTwitter" class="share-btn" target="_blank">
+<a id="shareFacebook" class="share-btn facebook" target="_blank">
 
-𝕏 Twitter
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+<a id="shareTwitter" class="share-btn twitter" target="_blank">
+
+<i class="fa-brands fa-x-twitter"></i>
 
 </a>
 
