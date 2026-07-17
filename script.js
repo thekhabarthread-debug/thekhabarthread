@@ -1,31 +1,34 @@
-/*====================================================
-
+/*==================================================
 THE KHABAR THREAD
-SCRIPT PART 1
-
-Firebase + Hero + Breaking
-
-====================================================*/
+SCRIPT V3
+PART 1
+==================================================*/
 
 import { db } from "./js/firebase.js";
 
 import {
-
 collection,
-
 getDocs,
-
 query,
-
 orderBy
-
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
+
+/*====================================
+GLOBAL
+====================================*/
 
 let news = [];
 
-/*========================
+const heroImage = document.getElementById("hero-image");
+const heroTitle = document.getElementById("hero-title");
+const heroSummary = document.getElementById("hero-summary");
+const heroCategory = document.getElementById("hero-category");
+const heroRead = document.getElementById("hero-read");
+const breakingBar = document.getElementById("breaking-bar");
+
+/*====================================
 LOAD NEWS
-========================*/
+====================================*/
 
 async function loadNews(){
 
@@ -41,7 +44,7 @@ orderBy("createdAt","desc")
 
 const snapshot=await getDocs(q);
 
-news = [];
+news=[];
 
 snapshot.forEach((doc)=>{
 
@@ -57,79 +60,51 @@ id:doc.id,
 
 if(news.length===0){
 
-document.getElementById("news-grid").innerHTML=
+const grid=document.getElementById("news-grid");
 
-"<h2>No News Found</h2>";
+if(grid){
+
+grid.innerHTML="<h2>No News Found</h2>";
+
+}
 
 return;
 
 }
 
-/*========================
+/*====================================
 HERO
-========================*/
+====================================*/
 
-const heroNews=
+const hero=news.find(item=>item.featured===true) || news[0];
 
-news.find(item=>item.featured===true)
+heroImage.src=hero.image;
 
-||
+heroImage.alt=hero.title;
 
-news[0];
+heroTitle.innerText=hero.title;
 
-document.getElementById("hero-category").innerText=
+heroSummary.innerText=hero.summary;
 
-heroNews.category;
+heroCategory.innerText=hero.category;
 
-document.getElementById("hero-title").innerText=
+heroRead.href=`news.html?id=${hero.id}`;
 
-heroNews.title;
-
-document.getElementById("hero-summary").innerText=
-
-heroNews.summary;
-
-document.getElementById("hero-image").src=
-
-heroNews.image;
-
-document.getElementById("hero-read").href=
-
-`news.html?id=${heroNews.id}`;
-
-/*========================
+/*====================================
 BREAKING
-========================*/
+====================================*/
 
-const breaking=
+const breaking=news.find(item=>item.breaking===true);
 
-news.find(item=>item.breaking===true);
+if(breaking && breakingBar){
 
-if(
-
-breaking &&
-
-document.getElementById("breaking-bar")
-
-){
-
-document.getElementById("breaking-bar").innerText=
-
-"🔴 "+breaking.title;
+breakingBar.innerHTML="🔴 "+breaking.title;
 
 }
 
-/*====================================================
-
-SCRIPT PART 2
-
-Top Stories + Latest News
-
-====================================================*/
-
-/*========================
+/*====================================
 TOP STORIES
-========================*/
+====================================*/
 
 const topStories=document.getElementById("top-stories");
 
@@ -138,7 +113,7 @@ if(topStories){
 topStories.innerHTML="";
 
 news
-.filter(item=>item.id!==heroNews.id)
+.filter(item=>item.id!==hero.id)
 .slice(0,4)
 .forEach(item=>{
 
@@ -176,28 +151,25 @@ ${item.title}
 
 }
 
-/*========================
+/*====================================
 LATEST NEWS
-========================*/
+====================================*/
 
-const grid=document.getElementById("news-grid");
+const newsGrid=document.getElementById("news-grid");
 
-if(grid){
+if(newsGrid){
 
-grid.innerHTML="";
+newsGrid.innerHTML="";
 
 news.forEach(item=>{
 
-grid.innerHTML+=`
+newsGrid.innerHTML+=`
 
 <div class="card fade-up">
 
 <img
-
 src="${item.image}"
-
 class="card-image"
-
 alt="${item.title}">
 
 <div class="card-content">
@@ -221,9 +193,7 @@ ${item.summary}
 </p>
 
 <a
-
 href="news.html?id=${item.id}"
-
 class="read-btn">
 
 पूरा पढ़ें →
@@ -239,17 +209,10 @@ class="read-btn">
 });
 
 }
-/*====================================================
 
-SCRIPT PART 3
-
-Category Sections
-
-====================================================*/
-
-/*========================
+/*====================================
 CATEGORY FUNCTION
-========================*/
+====================================*/
 
 function loadCategory(category,id){
 
@@ -268,15 +231,27 @@ box.innerHTML+=`
 
 <div class="category-card fade-up">
 
-<img src="${item.image}" alt="${item.title}">
+<img
+src="${item.image}"
+alt="${item.title}">
 
 <div class="category-content">
 
-<h3>${item.title}</h3>
+<h3>
 
-<p>${item.summary}</p>
+${item.title}
 
-<a href="news.html?id=${item.id}" class="view-more">
+</h3>
+
+<p>
+
+${item.summary}
+
+</p>
+
+<a
+href="news.html?id=${item.id}"
+class="view-more">
 
 पूरा पढ़ें →
 
@@ -292,21 +267,74 @@ box.innerHTML+=`
 
 }
 
+/*====================================
+LOAD ALL CATEGORIES
+====================================*/
+
 loadCategory("भारत","india-news");
+
 loadCategory("उत्तर प्रदेश","up-news");
+
 loadCategory("दुनिया","world-news");
+
 loadCategory("राजनीति","politics-news");
+
 loadCategory("खेल","sports-news");
+
 loadCategory("टेक","tech-news");
 
-} // <-- try ends here
+/*====================================
+SEARCH
+====================================*/
 
-catch(error){
+const searchInput=document.querySelector(".search-box input");
 
-console.error("Error Loading News:",error);
+if(searchInput){
+
+searchInput.addEventListener("input",function(){
+
+const value=this.value.toLowerCase().trim();
+
+const cards=document.querySelectorAll("#news-grid .card");
+
+cards.forEach(card=>{
+
+const title=card.querySelector("h3").innerText.toLowerCase();
+
+const summary=card.querySelector("p").innerText.toLowerCase();
+
+if(title.includes(value) || summary.includes(value)){
+
+card.style.display="flex";
+
+}else{
+
+card.style.display="none";
 
 }
 
-} // <-- loadNews ends here
+});
+
+});
+
+}
+
+/*====================================
+END TRY
+====================================*/
+
+}
+
+catch(error){
+
+console.error("Error Loading News :",error);
+
+}
+
+} // <-- loadNews() function ends here
+
+/*====================================
+START APP
+====================================*/
 
 loadNews();
