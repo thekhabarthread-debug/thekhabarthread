@@ -125,3 +125,11 @@ async function loadCategoryNews() {
 }
 
 loadCategoryNews();
+
+const badge=document.getElementById("category-badge");
+
+if(badge){
+
+badge.innerText=`📰 ${category} News`;
+
+}
