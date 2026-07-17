@@ -1975,3 +1975,37 @@ transition:.35s;
 transform:scale(1.04);
 
 }
+
+/*==========================
+EMPTY SEARCH
+==========================*/
+
+.empty-state{
+
+padding:60px 20px;
+
+text-align:center;
+
+background:#fff;
+
+border-radius:16px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+}
+
+.empty-state h2{
+
+margin-bottom:10px;
+
+font-size:30px;
+
+}
+
+.empty-state p{
+
+color:#666;
+
+font-size:18px;
+
+}
