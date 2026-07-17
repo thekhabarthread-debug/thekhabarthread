@@ -2401,19 +2401,17 @@ font-size:21px;
 
 .single-news h1{
 
-font-size:30px;
+font-family:'Merriweather',serif;
 
-line-height:1.4;
+font-size:48px;
 
-}
+font-weight:800;
 
-.single-image{
+line-height:1.28;
 
-height:240px;
+margin-bottom:28px;
 
-object-fit:cover;
-
-border-radius:14px;
+color:#111;
 
 }
 
@@ -2425,17 +2423,23 @@ font-size:14px;
 
 .summary{
 
-font-size:17px;
+background:#fff8f2;
 
-line-height:1.8;
+border-left:6px solid #B71C1C;
 
-}
+padding:24px;
 
-.content{
+border-radius:12px;
 
-font-size:17px;
+font-size:21px;
 
-line-height:2;
+line-height:1.9;
+
+font-weight:600;
+
+color:#333;
+
+margin:30px 0;
 
 }
 
