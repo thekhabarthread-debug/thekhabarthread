@@ -338,3 +338,66 @@ START APP
 ====================================*/
 
 loadNews();
+/*====================================
+LIVE SEARCH
+====================================*/
+
+const searchBox=document.getElementById("searchInput");
+
+if(searchBox){
+
+searchBox.addEventListener("input",()=>{
+
+const value=searchBox.value.toLowerCase();
+
+const cards=document.querySelectorAll("#news-grid .card");
+
+let found=0;
+
+cards.forEach(card=>{
+
+const title=card.querySelector("h3").innerText.toLowerCase();
+
+const text=card.innerText.toLowerCase();
+
+if(title.includes(value) || text.includes(value)){
+
+card.style.display="block";
+
+found++;
+
+}else{
+
+card.style.display="none";
+
+}
+
+});
+
+const old=document.getElementById("no-search-result");
+
+if(old) old.remove();
+
+if(found===0){
+
+const div=document.createElement("div");
+
+div.id="no-search-result";
+
+div.className="empty-state";
+
+div.innerHTML=`
+
+<h2>No News Found</h2>
+
+<p>कोई समाचार नहीं मिला।</p>
+
+`;
+
+document.getElementById("news-grid").appendChild(div);
+
+}
+
+});
+
+}
