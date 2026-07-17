@@ -2611,13 +2611,23 @@ justify-content:center;
 
 }
 
-.share-btn{
+.share-btn.copy{
 
-width:40px;
+background:#B71C1C;
 
-height:40px;
+width:46px;
 
-font-size:16px;
+height:46px;
+
+border-radius:50%;
+
+padding:0;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
 
 }
 
