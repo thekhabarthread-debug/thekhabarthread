@@ -1,6 +1,6 @@
 /*=========================================
 THE KHABAR THREAD
-NEWS PAGE
+NEWS PAGE V2
 PART 1
 =========================================*/
 
@@ -43,13 +43,122 @@ return;
 
 try{
 
-const docRef=doc(db,"news",id);
+const docRef = doc(db,"news",id);
 
-const docSnap=await getDoc(docRef);
+const docSnap = await getDoc(docRef);
 
 if(!docSnap.exists()){
 
 container.innerHTML="<h2>News Not Found</h2>";
+
+return;
+
+}
+
+const news = docSnap.data();
+
+/*=========================================
+ARTICLE
+=========================================*/
+
+container.innerHTML = `
+
+<div class="single-news">
+
+<div class="news-meta">
+
+<span class="category">
+
+${news.category}
+
+</span>
+
+<span class="news-date">
+
+🗓 ${news.date}
+
+</span>
+
+</div>
+
+<h1>
+
+${news.title}
+
+</h1>
+
+<div class="share-buttons">
+
+<button id="copyLink" class="share-btn copy">
+
+<i class="fa-solid fa-link"></i>
+
+</button>
+
+<a
+id="shareWhatsapp"
+class="share-btn whatsapp"
+target="_blank">
+
+<i class="fa-brands fa-whatsapp"></i>
+
+</a>
+
+<a
+id="shareFacebook"
+class="share-btn facebook"
+target="_blank">
+
+<i class="fa-brands fa-facebook-f"></i>
+
+</a>
+
+<a
+id="shareTwitter"
+class="share-btn twitter"
+target="_blank">
+
+<i class="fa-brands fa-x-twitter"></i>
+
+</a>
+
+</div>
+
+<img
+src="${news.image}"
+alt="${news.title}"
+class="single-image">
+
+<div class="summary">
+
+${news.summary}
+
+</div>
+
+<div class="content">
+
+<p>
+
+${String(news.content || "")
+.replace(/\n\s*\n/g,"</p><p>")
+.replace(/\n/g,"<br>")}
+
+</p>
+
+</div>
+
+<a
+href="index.html"
+class="read-btn">
+
+← Home
+
+</a>
+
+</div>
+
+`;
+
 /*=========================================
 SHARE BUTTONS
 =========================================*/
@@ -66,7 +175,7 @@ const copy = document.getElementById("copyLink");
 if(whatsapp){
 
 whatsapp.href =
-`https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+`https://wa.me/?text=${encodeURIComponent(title + "\n" + url)}`;
 
 }
 
@@ -84,159 +193,37 @@ twitter.href =
 
 }
 
-/*=========================================
-NATIVE SHARE
-=========================================*/
-
-if(navigator.share){
-
-const native=document.createElement("button");
-
-native.className="share-btn native";
-
-native.innerHTML='<i class="fa-solid fa-share-nodes"></i>';
-
-document.querySelector(".share-buttons").appendChild(native);
-
-native.addEventListener("click",async()=>{
-
-try{
-
-await navigator.share({
-
-title:news.title,
-
-text:news.summary,
-
-url:window.location.href
-
-});
-
-}
-
-catch(err){
-
-console.log(err);
-
-}
-
-});
-
-}
 if(copy){
 
 copy.addEventListener("click",async()=>{
 
+try{
+
 await navigator.clipboard.writeText(url);
 
-copy.innerText="✅ Link Copied";
+copy.innerHTML='<i class="fa-solid fa-check"></i>';
 
 setTimeout(()=>{
 
-copy.innerText="🔗 Copy Link";
+copy.innerHTML='<i class="fa-solid fa-link"></i>';
 
 },2000);
+
+}catch(e){
+
+alert("Link Copy Failed");
+
+}
 
 });
 
 }
-
-return;
-
-}
-
-const news=docSnap.data();
-
-/*=========================================
-ARTICLE
-=========================================*/
-
-container.innerHTML=`
-
-<div class="single-news">
-
-<span class="category">
-
-${news.category}
-
-</span>
-
-<h1>
-
-${news.title}
-
-</h1>
-
-<div class="share-buttons">
-
-<button id="copyLink" class="share-btn copy">
-
-<i class="fa-solid fa-link"></i>
-
-<span>Copy</span>
-
-</button>
-
-<a id="shareWhatsapp" class="share-btn whatsapp" target="_blank">
-
-<i class="fa-brands fa-whatsapp"></i>
-
-</a>
-
-<a id="shareFacebook" class="share-btn facebook" target="_blank">
-
-<i class="fa-brands fa-facebook-f"></i>
-
-</a>
-
-<a id="shareTwitter" class="share-btn twitter" target="_blank">
-
-<i class="fa-brands fa-x-twitter"></i>
-
-</a>
-
-</div>
-
-<p class="news-date">
-
-🗓 ${news.date}
-
-</p>
-
-<img
-src="${news.image}"
-class="single-image"
-alt="${news.title}">
-
-<p class="summary">
-
-${news.summary}
-
-</p>
-
-<div class="content">
-
-${news.content}
-
-</div>
-
-<br>
-
-<a href="index.html" class="read-btn">
-
-← Home
-
-</a>
-
-</div>
-
-`;
 
 /*=========================================
 RELATED NEWS
 =========================================*/
 
-const q=query(
+const q = query(
 
 collection(db,"news"),
 
@@ -244,47 +231,88 @@ orderBy("createdAt","desc")
 
 );
 
-const snapshot=await getDocs(q);
+const snapshot = await getDocs(q);
 
 if(relatedBox){
 
 relatedBox.innerHTML="";
 
+let count = 0;
+
 snapshot.forEach((item)=>{
 
 if(item.id===id) return;
 
+if(count>=5) return;
+
+count++;
+
 const data=item.data();
 
-relatedBox.innerHTML+=`
+relatedBox.innerHTML += `
 
-<div class="related-card">
+<a
+href="news.html?id=${item.id}"
+class="related-card">
 
 <img
 src="${data.image}"
 alt="${data.title}">
 
-<div>
+<div class="related-info">
+
+<span class="related-category">
+
+${data.category}
+
+</span>
 
 <h4>
 
-<a href="news.html?id=${item.id}">
-
 ${data.title}
-
-</a>
 
 </h4>
 
 </div>
 
-</div>
+</a>
 
 `;
 
 });
+}
+
+/*=========================================
+PAGE SEO
+=========================================*/
+
+document.title = `${news.title} | The Khabar Thread`;
+
+const metaDesc = document.querySelector('meta[name="description"]');
+
+if(metaDesc){
+
+metaDesc.setAttribute(
+
+"content",
+
+news.summary || news.title
+
+);
 
 }
+
+/*=========================================
+SCROLL TOP
+=========================================*/
+
+window.scrollTo({
+
+top:0,
+
+behavior:"smooth"
+
+});
 
 /*=========================================
 END TRY
@@ -294,9 +322,11 @@ END TRY
 
 catch(error){
 
-console.error("Error Loading News :",error);
+console.error("News Loading Error :",error);
 
-container.innerHTML=`
+container.innerHTML = `
+
+<div class="empty-state">
 
 <h2>
 
@@ -310,6 +340,14 @@ ${error.message}
 
 </p>
 
+<a href="index.html" class="read-btn">
+
+← Back to Home
+
+</a>
+
+</div>
+
 `;
 
 }
@@ -321,7 +359,7 @@ END FUNCTION
 }
 
 /*=========================================
-START
+START APP
 =========================================*/
 
 loadNews();
