@@ -41,13 +41,15 @@ scroll-behavior:smooth;
 
 body{
 
-font-family:'Noto Sans',sans-serif;
+margin:0;
 
-background:var(--bg);
+padding:0;
 
-color:var(--text);
+font-family:'Poppins',sans-serif;
 
-overflow-x:hidden;
+background:#F5F2EC;
+
+color:#222;
 
 }
 
@@ -123,9 +125,9 @@ gap:40px;
 
 .logo{
 
-width:190px;
+width:180px;
 
-transition:.35s;
+display:block;
 
 }
 
