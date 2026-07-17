@@ -1917,3 +1917,61 @@ font-weight:bold;
 color:#B71C1C;
 
 }
+
+/*==========================
+CATEGORY BANNER
+==========================*/
+
+.category-banner{
+
+margin:25px 0 35px;
+
+background:linear-gradient(135deg,#B71C1C,#8E0000);
+
+padding:18px 25px;
+
+border-radius:14px;
+
+color:#fff;
+
+font-size:20px;
+
+font-weight:700;
+
+box-shadow:0 8px 25px rgba(183,28,28,.25);
+
+}
+
+#category-badge{
+
+display:inline-block;
+
+letter-spacing:.5px;
+
+}
+
+.category-card{
+
+transition:.35s;
+
+}
+
+.category-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 15px 35px rgba(0,0,0,.15);
+
+}
+
+.category-card img{
+
+transition:.35s;
+
+}
+
+.category-card:hover img{
+
+transform:scale(1.04);
+
+}
