@@ -45,6 +45,7 @@ return;
 title.innerText = category;
 
 try{
+    console.log("Category:", category);
 
 const q=query(
 
@@ -57,6 +58,7 @@ orderBy("createdAt","desc")
 );
 
 const snapshot=await getDocs(q);
+console.log("Total Docs:", snapshot.size);
 
 grid.innerHTML="";
 
