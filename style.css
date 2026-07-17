@@ -2925,3 +2925,41 @@ font-size:17px;
 }
 
 }
+
+/*==================================
+NEWS META
+==================================*/
+
+.news-meta{
+
+display:flex;
+
+align-items:center;
+
+justify-content:space-between;
+
+gap:15px;
+
+margin-bottom:20px;
+
+flex-wrap:wrap;
+
+}
+
+.news-meta .category{
+
+margin:0;
+
+}
+
+.news-meta .news-date{
+
+margin:0;
+
+font-size:15px;
+
+color:#777;
+
+font-weight:500;
+
+}
