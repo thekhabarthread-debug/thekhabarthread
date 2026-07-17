@@ -155,64 +155,27 @@ container.innerHTML=`
 
 <div class="single-news">
 
+<div class="news-meta">
+
 <span class="category">
 
 ${news.category}
 
 </span>
 
+<span class="news-date">
+
+🗓 ${news.date}
+
+</span>
+
+</div>
+
 <h1>
 
 ${news.title}
 
 </h1>
-
-<div class="share-buttons">
-
-<button id="copyLink" class="share-btn copy">
-
-<i class="fa-solid fa-link"></i>
-
-<span>Copy</span>
-
-</button>
-
-<a id="shareWhatsapp" class="share-btn whatsapp" target="_blank">
-
-<i class="fa-brands fa-whatsapp"></i>
-
-</a>
-
-<a id="shareFacebook" class="share-btn facebook" target="_blank">
-
-<i class="fa-brands fa-facebook-f"></i>
-
-</a>
-
-<a id="shareTwitter" class="share-btn twitter" target="_blank">
-
-<i class="fa-brands fa-x-twitter"></i>
-
-</a>
-
-</div>
-
-<p class="news-date">
-
-🗓 ${news.date}
-
-</p>
-
-<img
-src="${news.image}"
-class="single-image"
-alt="${news.title}">
-
-<p class="summary">
-
-${news.summary}
-
-</p>
 
 <div class="content">
 
