@@ -248,6 +248,7 @@ if(count>=5) return;
 count++;
 
 const data=item.data();
+if(data.category !== news.category) return;
 
 relatedBox.innerHTML += `
 
