@@ -10,7 +10,8 @@ import {
 collection,
 getDocs,
 query,
-orderBy
+orderBy,
+where
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 /*====================================
@@ -282,6 +283,49 @@ loadCategory("राजनीति","politics-news");
 loadCategory("खेल","sports-news");
 
 loadCategory("टेक","tech-news");
+
+/*====================================
+HOMEPAGE AD
+====================================*/
+
+const adBox=document.getElementById("homepage-ad");
+
+if(adBox){
+
+const adQuery=query(
+
+collection(db,"ads"),
+
+where("active","==",true),
+
+where("position","==","homepage")
+
+);
+
+const adSnap=await getDocs(adQuery);
+
+if(!adSnap.empty){
+
+const ad=adSnap.docs[0].data();
+
+adBox.innerHTML=`
+
+<a
+href="${ad.link}"
+target="_blank"
+class="homepage-ad">
+
+<img
+src="${ad.image}"
+alt="${ad.title}">
+
+</a>
+
+`;
+
+}
+
+}
 
 /*====================================
 END TRY
