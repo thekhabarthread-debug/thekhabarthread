@@ -2009,3 +2009,47 @@ color:#666;
 font-size:18px;
 
 }
+
+/*==========================
+SHARE BUTTONS
+==========================*/
+
+.share-buttons{
+
+display:flex;
+
+gap:12px;
+
+flex-wrap:wrap;
+
+margin:25px 0;
+
+}
+
+.share-btn{
+
+padding:10px 18px;
+
+border:none;
+
+border-radius:8px;
+
+background:#B71C1C;
+
+color:#fff;
+
+text-decoration:none;
+
+cursor:pointer;
+
+font-weight:600;
+
+transition:.3s;
+
+}
+
+.share-btn:hover{
+
+background:#8E0000;
+
+}
