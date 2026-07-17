@@ -1,6 +1,8 @@
 import { db } from "./firebase.js";
 
+
 import {
+    
   collection,
   getDocs,
   query,
@@ -9,6 +11,8 @@ import {
 
 const params = new URLSearchParams(window.location.search);
 const category = params.get("name");
+console.log("CATEGORY JS LOADED");
+console.log("Category =", category);
 
 const title = document.getElementById("category-title");
 const count = document.getElementById("category-count");
@@ -34,6 +38,7 @@ async function loadCategoryNews() {
         );
 
         const snapshot = await getDocs(q);
+        console.log("Documents =", snapshot.size);
 
         grid.innerHTML = "";
 
