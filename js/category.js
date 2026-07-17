@@ -1,78 +1,191 @@
+/*=========================================
+THE KHABAR THREAD
+CATEGORY PAGE
+PART 1
+=========================================*/
+
 import { db } from "./firebase.js";
 
 import {
-  collection,
-  getDocs,
-  query,
-  where,
-  orderBy
+collection,
+getDocs,
+query,
+where,
+orderBy
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+/*=========================================
+GLOBAL
+=========================================*/
+
 const params = new URLSearchParams(window.location.search);
+
 const category = params.get("name");
 
-document.getElementById("category-title").innerText =
-category + " News";
+const title = document.getElementById("category-title");
 
-async function loadCategoryNews() {
+const count = document.getElementById("category-count");
 
-    try {
+const grid = document.getElementById("category-news");
 
-        const q = query(
-            collection(db, "news"),
-            where("category", "==", category),
-            orderBy("createdAt", "desc")
-        );
+/*=========================================
+LOAD CATEGORY
+=========================================*/
 
-        const snapshot = await getDocs(q);
+async function loadCategoryNews(){
 
-        const grid = document.getElementById("category-news");
+if(!category){
 
-        grid.innerHTML = "";
+grid.innerHTML="<h2>Category Not Found</h2>";
 
-        if (snapshot.empty) {
-
-            grid.innerHTML =
-            "<h2>No News Found</h2>";
-
-            return;
-
-        }
-
-        snapshot.forEach((doc) => {
-
-            const news = doc.data();
-
-            grid.innerHTML += `
-
-            <div class="card">
-
-                <img src="${news.image}" class="card-image">
-
-                <h3>${news.title}</h3>
-
-                <p>${news.summary}</p>
-
-                <a href="news.html?id=${doc.id}" class="read-btn">
-
-                पूरा पढ़ें →
-
-                </a>
-
-            </div>
-
-            `;
-
-        });
-
-    }
-
-    catch(error){
-
-        console.error(error);
-
-    }
+return;
 
 }
+
+title.innerText = category;
+
+try{
+
+const q=query(
+
+collection(db,"news"),
+
+where("category","==",category),
+
+orderBy("createdAt","desc")
+
+);
+
+const snapshot=await getDocs(q);
+
+grid.innerHTML="";
+
+let total=0;
+
+/*=========================================
+CATEGORY CARDS
+=========================================*/
+
+if(snapshot.empty){
+
+count.innerText="0 Articles";
+
+grid.innerHTML=`
+
+<div class="empty-state">
+
+<h2>
+
+No News Found
+
+</h2>
+
+<p>
+
+इस Category में अभी कोई News उपलब्ध नहीं है।
+
+</p>
+
+</div>
+
+`;
+
+return;
+
+}
+
+snapshot.forEach((doc)=>{
+
+total++;
+
+const news=doc.data();
+
+grid.innerHTML+=`
+
+<div class="category-card">
+
+<img
+src="${news.image}"
+alt="${news.title}">
+
+<div class="category-content">
+
+<span class="category">
+
+${news.category}
+
+</span>
+
+<h3>
+
+${news.title}
+
+</h3>
+
+<p>
+
+${news.summary}
+
+</p>
+
+<a
+href="news.html?id=${doc.id}"
+class="read-btn">
+
+पूरा पढ़ें →
+
+</a>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+count.innerText=`${total} Articles`;
+
+/*=========================================
+END TRY
+=========================================*/
+
+}
+
+catch(error){
+
+console.error("Category Error :",error);
+
+grid.innerHTML=`
+
+<div class="empty-state">
+
+<h2>
+
+Error Loading News
+
+</h2>
+
+<p>
+
+${error.message}
+
+</p>
+
+</div>
+
+`;
+
+}
+
+/*=========================================
+END FUNCTION
+=========================================*/
+
+}
+
+/*=========================================
+START
+=========================================*/
 
 loadCategoryNews();
