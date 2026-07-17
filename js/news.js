@@ -128,6 +128,34 @@ ${news.title}
 
 </h1>
 
+<div class="share-buttons">
+
+<button id="copyLink" class="share-btn">
+
+🔗 Copy Link
+
+</button>
+
+<a id="shareWhatsapp" class="share-btn" target="_blank">
+
+📱 WhatsApp
+
+</a>
+
+<a id="shareFacebook" class="share-btn" target="_blank">
+
+📘 Facebook
+
+</a>
+
+<a id="shareTwitter" class="share-btn" target="_blank">
+
+𝕏 Twitter
+
+</a>
+
+</div>
+
 <p class="news-date">
 
 🗓 ${news.date}
