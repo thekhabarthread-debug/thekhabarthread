@@ -1,272 +1,122 @@
-/*=========================================
-THE KHABAR THREAD
-CATEGORY PAGE
-PART 1
-=========================================*/
-
 import { db } from "./firebase.js";
 
 import {
-collection,
-getDocs,
-query,
-where,
-orderBy
+  collection,
+  getDocs,
+  query,
+  orderBy
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-/*=========================================
-GLOBAL
-=========================================*/
-
 const params = new URLSearchParams(window.location.search);
-
 const category = params.get("name");
 
 const title = document.getElementById("category-title");
-
 const count = document.getElementById("category-count");
-
 const grid = document.getElementById("category-news");
 
-/*=========================================
-LOAD CATEGORY
-=========================================*/
+async function loadCategoryNews() {
 
-async function loadCategoryNews(){
+    if (!category) {
 
-if(!category){
+        title.innerText = "Category Not Found";
+        count.innerText = "";
+        return;
 
-grid.innerHTML="<h2>Category Not Found</h2>";
+    }
 
-return;
+    title.innerText = category;
 
-}
+    try {
 
-title.innerText = category;
+        const q = query(
+            collection(db, "news"),
+            orderBy("createdAt", "desc")
+        );
 
-try{
-    console.log("Category:", category);
+        const snapshot = await getDocs(q);
 
-const q = query(
-    collection(db, "news"),
-    orderBy("createdAt", "desc")
-);
+        grid.innerHTML = "";
 
-const snapshot = await getDocs(q);
-console.log("Total Docs:", snapshot.size);
+        let total = 0;
 
-grid.innerHTML="";
+        snapshot.forEach((doc) => {
 
-let total=0;
+            const news = doc.data();
 
-/*=========================================
-CATEGORY CARDS
-=========================================*/
+            if (news.category !== category) return;
 
-if(snapshot.empty){
+            total++;
 
-count.innerText="0 Articles";
+            grid.innerHTML += `
 
-grid.innerHTML=`
+            <div class="category-card">
 
-<div class="empty-state">
+                <img src="${news.image}" alt="${news.title}">
 
-<h2>
+                <div class="category-content">
 
-No News Found
+                    <span class="category">
+                        ${news.category}
+                    </span>
 
-</h2>
+                    <h3>
+                        ${news.title}
+                    </h3>
 
-<p>
+                    <p>
+                        ${news.summary}
+                    </p>
 
-इस Category में अभी कोई News उपलब्ध नहीं है।
+                    <a href="news.html?id=${doc.id}" class="read-btn">
+                        पूरा पढ़ें →
+                    </a>
 
-</p>
+                </div>
 
-</div>
+            </div>
 
-`;
+            `;
 
-return;
+        });
 
-}
+        count.innerText = `${total} Articles`;
 
-const filtered = [];
+        if (total === 0) {
 
-snapshot.forEach((doc)=>{
+            grid.innerHTML = `
 
-const news = doc.data();
+            <div class="empty-state">
 
-if(news.category !== category) return;
+                <h2>No News Found</h2>
 
-total++;
+                <p>इस Category में अभी कोई News उपलब्ध नहीं है।</p>
 
-grid.innerHTML += `
+            </div>
 
-<div class="category-card">
+            `;
 
-<img
-src="${news.image}"
-alt="${news.title}">
+        }
 
-<div class="category-content">
+    }
 
-<span class="category">
+    catch (error) {
 
-${news.category}
+        console.error(error);
 
-</span>
+        grid.innerHTML = `
 
-<h3>
+        <div class="empty-state">
 
-${news.title}
+            <h2>Error Loading News</h2>
 
-</h3>
-
-<p>
-
-${news.summary}
-
-</p>
-
-<a
-href="news.html?id=${doc.id}"
-class="read-btn">
-
-पूरा पढ़ें →
-
-</a>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-filtered.forEach((news) => {
-
-    total++;
-
-    grid.innerHTML += `
-    <div class="category-card">
-
-        <img src="${news.image}" alt="${news.title}">
-
-        <div class="category-content">
-
-            <span class="category">${news.category}</span>
-
-            <h3>${news.title}</h3>
-
-            <p>${news.summary}</p>
-
-            <a href="news.html?id=${news.id}" class="read-btn">
-
-                पूरा पढ़ें →
-
-            </a>
+            <p>${error.message}</p>
 
         </div>
 
-    </div>
-    `;
+        `;
 
-});
-
-snapshot.forEach((doc)=>{
-
-total++;
-
-const news=doc.data();
-
-grid.innerHTML+=`
-
-<div class="category-card">
-
-<img
-src="${news.image}"
-alt="${news.title}">
-
-<div class="category-content">
-
-<span class="category">
-
-${news.category}
-
-</span>
-
-<h3>
-
-${news.title}
-
-</h3>
-
-<p>
-
-${news.summary}
-
-</p>
-
-<a
-href="news.html?id=${doc.id}"
-class="read-btn">
-
-पूरा पढ़ें →
-
-</a>
-
-</div>
-
-</div>
-
-`;
-
-});
-
-count.innerText=`${total} Articles`;
-
-/*=========================================
-END TRY
-=========================================*/
+    }
 
 }
-
-catch(error){
-
-console.error("Category Error :",error);
-
-grid.innerHTML=`
-
-<div class="empty-state">
-
-<h2>
-
-Error Loading News
-
-</h2>
-
-<p>
-
-${error.message}
-
-</p>
-
-</div>
-
-`;
-
-}
-
-/*=========================================
-END FUNCTION
-=========================================*/
-
-}
-
-/*=========================================
-START
-=========================================*/
 
 loadCategoryNews();
