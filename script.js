@@ -284,42 +284,6 @@ loadCategory("खेल","sports-news");
 loadCategory("टेक","tech-news");
 
 /*====================================
-SEARCH
-====================================*/
-
-const searchInput=document.querySelector(".search-box input");
-
-if(searchInput){
-
-searchInput.addEventListener("input",function(){
-
-const value=this.value.toLowerCase().trim();
-
-const cards=document.querySelectorAll("#news-grid .card");
-
-cards.forEach(card=>{
-
-const title=card.querySelector("h3").innerText.toLowerCase();
-
-const summary=card.querySelector("p").innerText.toLowerCase();
-
-if(title.includes(value) || summary.includes(value)){
-
-card.style.display="flex";
-
-}else{
-
-card.style.display="none";
-
-}
-
-});
-
-});
-
-}
-
-/*====================================
 END TRY
 ====================================*/
 
