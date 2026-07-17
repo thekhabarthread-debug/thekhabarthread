@@ -22,42 +22,6 @@ async function loadNews() {
 
     const snapshot = await getDocs(q);
 
-    console.log(snapshot.size);
-
-snapshot.forEach((document) => {
-
-    console.log(document.id, document.data());
-
-    const news = document.data();
-
-    table.innerHTML += `
-    <tr>
-
-    <td><img src="${news.image}"></td>
-
-    <td>${news.title}</td>
-
-    <td>${news.category}</td>
-
-    <td>${news.date}</td>
-
-    <td>
-
-    <button class="action-btn edit-btn" onclick="editNews('${document.id}')">
-    Edit
-    </button>
-
-    <button class="action-btn delete-btn" onclick="deleteNews('${document.id}')">
-    Delete
-    </button>
-
-    </td>
-
-    </tr>
-    `;
-
-});
-
     snapshot.forEach((document) => {
 
         const news = document.data();
@@ -68,25 +32,41 @@ snapshot.forEach((document) => {
 
 <td>
 
-<img src="${news.image}">
+<img src="${news.image}" alt="${news.title}">
 
 </td>
 
-<td>${news.title}</td>
+<td class="news-title">
 
-<td>${news.category}</td>
+${news.title}
 
-<td>${news.date}</td>
+</td>
 
 <td>
 
-<button class="action-btn edit-btn" onclick="editNews('${document.id}')">
+${news.category}
+
+</td>
+
+<td>
+
+${news.date}
+
+</td>
+
+<td>
+
+<button
+class="action-btn edit-btn"
+onclick="editNews('${document.id}')">
 
 Edit
 
 </button>
 
-<button class="action-btn delete-btn" onclick="deleteNews('${document.id}')">
+<button
+class="action-btn delete-btn"
+onclick="deleteNews('${document.id}')">
 
 Delete
 
