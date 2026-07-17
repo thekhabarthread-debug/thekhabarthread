@@ -47,14 +47,8 @@ title.innerText = category;
 try{
     console.log("Category:", category);
 
-const q=query(
-
-collection(db,"news"),
-
-where("category","==",category),
-
-orderBy("createdAt","desc")
-
+const q = query(
+    collection(db, "news")
 );
 
 const snapshot=await getDocs(q);
@@ -95,6 +89,53 @@ No News Found
 return;
 
 }
+
+const filtered = [];
+
+snapshot.forEach((doc) => {
+
+    const data = doc.data();
+
+    if (data.category === category) {
+
+        filtered.push({
+            id: doc.id,
+            ...data
+        });
+
+    }
+
+});
+
+filtered.forEach((news) => {
+
+    total++;
+
+    grid.innerHTML += `
+    <div class="category-card">
+
+        <img src="${news.image}" alt="${news.title}">
+
+        <div class="category-content">
+
+            <span class="category">${news.category}</span>
+
+            <h3>${news.title}</h3>
+
+            <p>${news.summary}</p>
+
+            <a href="news.html?id=${news.id}" class="read-btn">
+
+                पूरा पढ़ें →
+
+            </a>
+
+        </div>
+
+    </div>
+    `;
+
+});
 
 snapshot.forEach((doc)=>{
 
