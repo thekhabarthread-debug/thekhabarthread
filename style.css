@@ -2411,11 +2411,12 @@ font-size:21px;
 
 font-family:'Merriweather',serif;
 
-font-size:48px;
+font-size:34px;
 
 font-weight:800;
 
-line-height:1.28;
+line-height:1.25;
+letter-spacing:-0.5px;
 
 margin-bottom:28px;
 
@@ -2752,9 +2753,10 @@ color:#111;
 
 .news-date{
 
-color:#777;
+color:#666;
 
 font-size:15px;
+font-weight:500;
 
 margin-bottom:25px;
 
