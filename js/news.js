@@ -56,6 +56,53 @@ return;
 }
 
 const news = docSnap.data();
+const schema=document.getElementById("news-schema");
+
+if(schema){
+
+schema.textContent=JSON.stringify({
+
+"@context":"https://schema.org",
+
+"@type":"NewsArticle",
+
+headline:news.title,
+
+image:[news.image],
+
+datePublished:news.date,
+
+dateModified:news.date,
+
+description:news.summary,
+
+author:{
+
+"@type":"Organization",
+
+name:"The Khabar Thread"
+
+},
+
+publisher:{
+
+"@type":"Organization",
+
+name:"The Khabar Thread",
+
+logo:{
+
+"@type":"ImageObject",
+
+url:"https://thekhabarthread.com/assets/logo.png"
+
+}
+
+}
+
+});
+
+}
 
 /*=========================================
 DYNAMIC SEO
