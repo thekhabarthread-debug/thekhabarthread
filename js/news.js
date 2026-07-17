@@ -58,6 +58,87 @@ return;
 const news = docSnap.data();
 
 /*=========================================
+DYNAMIC SEO
+=========================================*/
+
+document.title = `${news.title} | The Khabar Thread`;
+
+const metaDescription = document.querySelector(
+'meta[name="description"]'
+);
+
+if(metaDescription){
+
+metaDescription.setAttribute(
+
+"content",
+
+news.summary || ""
+
+);
+
+}
+
+const canonical = document.getElementById("canonical-link");
+
+if(canonical){
+
+canonical.href = window.location.href;
+
+}
+
+const ogTitle=document.getElementById("og-title");
+const ogDescription=document.getElementById("og-description");
+const ogImage=document.getElementById("og-image");
+const ogUrl=document.getElementById("og-url");
+
+if(ogTitle){
+
+ogTitle.content=news.title;
+
+}
+
+if(ogDescription){
+
+ogDescription.content=news.summary;
+
+}
+
+if(ogImage){
+
+ogImage.content=news.image;
+
+}
+
+if(ogUrl){
+
+ogUrl.content=window.location.href;
+
+}
+
+const twitterTitle=document.getElementById("twitter-title");
+const twitterDescription=document.getElementById("twitter-description");
+const twitterImage=document.getElementById("twitter-image");
+
+if(twitterTitle){
+
+twitterTitle.content=news.title;
+
+}
+
+if(twitterDescription){
+
+twitterDescription.content=news.summary;
+
+}
+
+if(twitterImage){
+
+twitterImage.content=news.image;
+
+}
+
+/*=========================================
 ARTICLE
 =========================================*/
 
