@@ -50,6 +50,57 @@ const docSnap=await getDoc(docRef);
 if(!docSnap.exists()){
 
 container.innerHTML="<h2>News Not Found</h2>";
+/*=========================================
+SHARE BUTTONS
+=========================================*/
+
+const url = window.location.href;
+
+const title = news.title;
+
+const whatsapp = document.getElementById("shareWhatsapp");
+const facebook = document.getElementById("shareFacebook");
+const twitter = document.getElementById("shareTwitter");
+const copy = document.getElementById("copyLink");
+
+if(whatsapp){
+
+whatsapp.href =
+`https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+
+}
+
+if(facebook){
+
+facebook.href =
+`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+
+}
+
+if(twitter){
+
+twitter.href =
+`https://twitter.com/intent/tweet?text=${encodeURIComponent(title)}&url=${encodeURIComponent(url)}`;
+
+}
+
+if(copy){
+
+copy.addEventListener("click",async()=>{
+
+await navigator.clipboard.writeText(url);
+
+copy.innerText="✅ Link Copied";
+
+setTimeout(()=>{
+
+copy.innerText="🔗 Copy Link";
+
+},2000);
+
+});
+
+}
 
 return;
 
