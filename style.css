@@ -339,13 +339,25 @@ BREAKING
 ========================*/
 
 .breaking{
-    display:flex;
-    align-items:center;
-    height:48px;
-    background:#111;
-    color:#fff;
-    position:relative;
-    z-index:1;
+
+display:flex;
+
+align-items:center;
+
+height:48px;
+
+background:#111;
+
+color:#fff;
+
+position:sticky;
+
+top:121px;
+
+z-index:9998;
+
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+
 }
 
 .breaking span{
