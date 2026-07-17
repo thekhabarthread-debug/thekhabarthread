@@ -84,6 +84,45 @@ twitter.href =
 
 }
 
+/*=========================================
+NATIVE SHARE
+=========================================*/
+
+if(navigator.share){
+
+const native=document.createElement("button");
+
+native.className="share-btn native";
+
+native.innerHTML='<i class="fa-solid fa-share-nodes"></i>';
+
+document.querySelector(".share-buttons").appendChild(native);
+
+native.addEventListener("click",async()=>{
+
+try{
+
+await navigator.share({
+
+title:news.title,
+
+text:news.summary,
+
+url:window.location.href
+
+});
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
+
+});
+
+}
 if(copy){
 
 copy.addEventListener("click",async()=>{
