@@ -43,6 +43,11 @@ form.addEventListener("submit", async (e) => {
         return;
     }
 
+    if (!imageFile.type.startsWith("image/") || imageFile.size > 5 * 1024 * 1024) {
+        alert("कृपया 5 MB से छोटी JPG, PNG या WebP image चुनें।");
+        return;
+    }
+
     try {
 
         // Upload Image to Cloudinary
