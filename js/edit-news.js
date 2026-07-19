@@ -1,4 +1,5 @@
 import { db } from "./firebase.js";
+import { auth } from "./auth.js";
 
 import {
   doc,
@@ -6,8 +7,30 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
+
+const ADMIN_EMAIL = "thekhabarthread@gmail.com";
+
+// Make sure Firebase Auth has actually restored the signed-in
+// session on this page before we let the user submit an update.
+// Without this, add/edit pages had no Auth instance initialized
+// at all, so Firestore writes went out with no identity attached
+// and were rejected by the security rules ("Missing or
+// insufficient permissions"), even for a correctly logged-in admin.
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Aap login nahi hain. Login page par bhej rahe hain.");
+    window.location.href = "login.html";
+    return;
+  }
+  if (user.email !== ADMIN_EMAIL) {
+    alert("Access Denied");
+    window.location.href = "login.html";
+  }
+});
 
 const form = document.getElementById("editForm");
 
