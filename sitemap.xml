@@ -5,7 +5,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/</loc>
+<loc>https://thekhabarthread.in/</loc>
 
 <changefreq>hourly</changefreq>
 
@@ -15,7 +15,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/category.html?name=भारत</loc>
+<loc>https://thekhabarthread.in/category.html?name=भारत</loc>
 
 <changefreq>daily</changefreq>
 
@@ -25,7 +25,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/category.html?name=उत्तर प्रदेश</loc>
+<loc>https://thekhabarthread.in/category.html?name=उत्तर प्रदेश</loc>
 
 <changefreq>daily</changefreq>
 
@@ -35,7 +35,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/category.html?name=राजनीति</loc>
+<loc>https://thekhabarthread.in/category.html?name=राजनीति</loc>
 
 <changefreq>daily</changefreq>
 
@@ -45,7 +45,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/category.html?name=दुनिया</loc>
+<loc>https://thekhabarthread.in/category.html?name=दुनिया</loc>
 
 <changefreq>daily</changefreq>
 
@@ -55,7 +55,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/category.html?name=खेल</loc>
+<loc>https://thekhabarthread.in/category.html?name=खेल</loc>
 
 <changefreq>daily</changefreq>
 
@@ -65,7 +65,7 @@ xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 <url>
 
-<loc>https://thekhabarthread.com/category.html?name=टेक</loc>
+<loc>https://thekhabarthread.in/category.html?name=टेक</loc>
 
 <changefreq>daily</changefreq>
 
