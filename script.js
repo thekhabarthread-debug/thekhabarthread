@@ -12,7 +12,8 @@ collection,
 getDocs,
 query,
 orderBy,
-where
+where,
+limit
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 /*====================================
@@ -40,7 +41,8 @@ const q=query(
 
 collection(db,"news"),
 
-orderBy("createdAt","desc")
+orderBy("createdAt","desc"),
+limit(50)
 
 );
 
@@ -100,7 +102,7 @@ const breaking=news.find(item=>item.breaking===true);
 
 if(breaking && breakingBar){
 
-breakingBar.innerHTML="🔴 "+escapeHTML(breaking.title);
+breakingBar.textContent="🔴 "+breaking.title;
 
 }
 
@@ -123,7 +125,7 @@ topStories.innerHTML+=`
 
 <div class="side-card">
 
-<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">
+<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async">
 
 <div>
 
@@ -163,7 +165,7 @@ if(newsGrid){
 
 newsGrid.innerHTML="";
 
-news.forEach(item=>{
+news.slice(0,12).forEach(item=>{
 
 newsGrid.innerHTML+=`
 
@@ -172,7 +174,9 @@ newsGrid.innerHTML+=`
 <img
 src="${escapeHTML(item.image)}"
 class="card-image"
-alt="${escapeHTML(item.title)}">
+alt="${escapeHTML(item.title)}"
+loading="lazy"
+decoding="async">
 
 <div class="card-content">
 
@@ -235,7 +239,9 @@ box.innerHTML+=`
 
 <img
 src="${escapeHTML(item.image)}"
-alt="${escapeHTML(item.title)}">
+alt="${escapeHTML(item.title)}"
+loading="lazy"
+decoding="async">
 
 <div class="category-content">
 
@@ -314,11 +320,14 @@ adBox.innerHTML=`
 <a
 href="${escapeHTML(ad.link)}"
 target="_blank"
+rel="noopener noreferrer sponsored"
 class="homepage-ad">
 
 <img
 src="${escapeHTML(ad.image)}"
-alt="${escapeHTML(ad.title)}">
+alt="${escapeHTML(ad.title)}"
+loading="lazy"
+decoding="async">
 
 </a>
 
