@@ -43,10 +43,10 @@ content="The Khabar Thread">
 content="भारत और दुनिया की ताज़ा खबरें सबसे पहले।">
 
 <meta property="og:url"
-content="https://thekhabarthread.com/">
+content="https://thekhabarthread.in/">
 
 <meta property="og:image"
-content="https://thekhabarthread.com/assets/logo.png">
+content="https://thekhabarthread.in/assets/logo.png">
 
 <meta property="og:site_name"
 content="The Khabar Thread">
@@ -63,7 +63,7 @@ content="The Khabar Thread">
 content="भारत और दुनिया की ताज़ा खबरें सबसे पहले।">
 
 <meta name="twitter:image"
-content="https://thekhabarthread.com/assets/logo.png">
+content="https://thekhabarthread.in/assets/logo.png">
 
 <link rel="icon"
 type="image/png"
@@ -79,12 +79,11 @@ rel="stylesheet">
   "@context":"https://schema.org",
   "@type":"NewsMediaOrganization",
   "name":"The Khabar Thread",
-  "url":"https://thekhabarthread.com",
-  "logo":"https://thekhabarthread.com/assets/logo.png",
+  "url":"https://thekhabarthread.in",
+  "logo":"https://thekhabarthread.in/assets/logo.png",
   "description":"भारत और दुनिया की ताज़ा खबरें, राजनीति, उत्तर प्रदेश, खेल, टेक और ब्रेकिंग न्यूज़।",
   "sameAs":[]
 }
-</script>
 </script>
 </head>
 
@@ -111,9 +110,10 @@ rel="stylesheet">
 <input
 type="text"
 id="searchInput"
-placeholder="Search News...">
+placeholder="Search News..."
+aria-label="खबरें खोजें">
 
-<button>
+<button type="button" aria-label="खोजें">
 
 🔍
 
@@ -159,7 +159,7 @@ LIVE
 
 <!-- ================= BREAKING ================= -->
 
-<div class="breaking">
+<div class="breaking" role="region" aria-label="ब्रेकिंग न्यूज़">
 
 <span>
 
@@ -167,7 +167,7 @@ LIVE
 
 </span>
 
-<marquee id="breaking-bar">
+<marquee id="breaking-bar" behavior="scroll" direction="left" aria-live="polite">
 
 Loading Breaking News...
 
