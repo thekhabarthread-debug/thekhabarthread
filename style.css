@@ -1120,7 +1120,29 @@ font-size:70px;
 
 color:#fff;
 
+overflow:hidden;
+
 transition:.35s;
+
+}
+
+.video-thumb img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+}
+
+a.video-card{
+
+display:block;
+
+text-decoration:none;
+
+color:inherit;
 
 }
 
