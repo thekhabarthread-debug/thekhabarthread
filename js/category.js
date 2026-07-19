@@ -1,4 +1,5 @@
 import { db } from "./firebase.js";
+import { escapeHTML } from "./escape-html.js";
 
 
 import {
@@ -56,23 +57,23 @@ async function loadCategoryNews() {
 
             <div class="category-card">
 
-                <img src="${news.image}" alt="${news.title}">
+                <img src="${escapeHTML(news.image)}" alt="${escapeHTML(news.title)}">
 
                 <div class="category-content">
 
                     <span class="category">
-                        ${news.category}
+                        ${escapeHTML(news.category)}
                     </span>
 
                     <h3>
-                        ${news.title}
+                        ${escapeHTML(news.title)}
                     </h3>
 
                     <p>
-                        ${news.summary}
+                        ${escapeHTML(news.summary)}
                     </p>
 
-                    <a href="news.html?id=${doc.id}" class="read-btn">
+                    <a href="news.html?id=${encodeURIComponent(doc.id)}" class="read-btn">
                         पूरा पढ़ें →
                     </a>
 
