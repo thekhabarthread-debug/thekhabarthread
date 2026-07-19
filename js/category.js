@@ -57,7 +57,7 @@ async function loadCategoryNews() {
 
             <div class="category-card">
 
-                <img src="${escapeHTML(news.image)}" alt="${escapeHTML(news.title)}">
+                <img src="${escapeHTML(news.image)}" alt="${escapeHTML(news.title)}" loading="lazy" decoding="async">
 
                 <div class="category-content">
 
@@ -115,7 +115,7 @@ async function loadCategoryNews() {
 
             <h2>Error Loading News</h2>
 
-            <p>${error.message}</p>
+            <p>${escapeHTML(error.message)}</p>
 
         </div>
 
