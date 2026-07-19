@@ -1,28 +1,49 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Add Advertisement | The Khabar Thread CMS</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>The Khabar Thread CMS</h1>
+
+<h2>Add Advertisement</h2>
+
 <form id="adForm">
 
+<label>Advertisement Title</label>
 <input
 type="text"
 id="title"
 placeholder="Advertisement Title"
 required>
 
-<br><br>
-
+<label>Advertisement Image</label>
 <input
 type="file"
 id="image"
 accept="image/*"
 required>
 
-<br><br>
-
+<label>Link URL (optional)</label>
 <input
 type="url"
 id="link"
 placeholder="https://example.com">
 
-<br><br>
-
+<label>Position</label>
 <select id="position">
 
 <option value="homepage">Homepage</option>
@@ -56,3 +77,19 @@ Save Advertisement
 </button>
 
 </form>
+
+<br>
+
+<a href="ads.html" class="read-btn">
+
+← Ads Manager
+
+</a>
+
+</div>
+
+<script type="module" src="../js/add-ad.js"></script>
+
+</body>
+
+</html>
