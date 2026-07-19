@@ -5,6 +5,7 @@ PART 1
 =========================================*/
 
 import { db } from "./firebase.js";
+import { escapeHTML } from "./escape-html.js";
 
 import {
 doc,
@@ -94,13 +95,13 @@ logo:{
 
 "@type":"ImageObject",
 
-url:"https://thekhabarthread.com/assets/logo.png"
+url:"https://thekhabarthread.in/assets/logo.png"
 
 }
 
 }
 
-});
+}).replace(/</g,"\\u003c");
 
 }
 
@@ -197,13 +198,13 @@ container.innerHTML = `
 
 <span class="category">
 
-${news.category}
+${escapeHTML(news.category)}
 
 </span>
 
 <span class="news-date">
 
-🗓 ${news.date}
+🗓 ${escapeHTML(news.date)}
 
 </span>
 
@@ -211,7 +212,7 @@ ${news.category}
 
 <h1>
 
-${news.title}
+${escapeHTML(news.title)}
 
 </h1>
 
@@ -253,13 +254,13 @@ target="_blank">
 </div>
 
 <img
-src="${news.image}"
-alt="${news.title}"
+src="${escapeHTML(news.image)}"
+alt="${escapeHTML(news.title)}"
 class="single-image">
 
 <div class="summary">
 
-${news.summary}
+${escapeHTML(news.summary)}
 
 </div>
 
@@ -267,7 +268,7 @@ ${news.summary}
 
 <p>
 
-${String(news.content || "")
+${escapeHTML(String(news.content || ""))
 .replace(/\n\s*\n/g,"</p><p>")
 .replace(/\n/g,"<br>")}
 
@@ -381,24 +382,24 @@ if(data.category !== news.category) return;
 relatedBox.innerHTML += `
 
 <a
-href="news.html?id=${item.id}"
+href="news.html?id=${encodeURIComponent(item.id)}"
 class="related-card">
 
 <img
-src="${data.image}"
-alt="${data.title}">
+src="${escapeHTML(data.image)}"
+alt="${escapeHTML(data.title)}">
 
 <div class="related-info">
 
 <span class="related-category">
 
-${data.category}
+${escapeHTML(data.category)}
 
 </span>
 
 <h4>
 
-${data.title}
+${escapeHTML(data.title)}
 
 </h4>
 
