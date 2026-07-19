@@ -6,92 +6,137 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Edit News</title>
+<title>Edit News | The Khabar Thread CMS</title>
 
 <link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="admin.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
+<div class="admin-topbar">
+<div class="admin-topbar-inner">
+
+<a href="dashboard.html" class="admin-brand">
+<span class="dot"></span>
+The Khabar Thread <span style="color:var(--muted);font-weight:600;">CMS</span>
+</a>
+
+<nav class="admin-nav">
+<a href="dashboard.html"><i class="fas fa-grip"></i> Dashboard</a>
+<a href="add-news.html"><i class="fas fa-plus"></i> Add News</a>
+<a href="all-news.html" class="active"><i class="fas fa-newspaper"></i> All News</a>
+<a href="ads.html"><i class="fas fa-bullhorn"></i> Ads</a>
+</nav>
+
+</div>
+</div>
+
 <div class="container">
 
-<h1>The Khabar Thread CMS</h1>
-
-<h2>Edit News</h2>
+<header class="admin-header">
+<div>
+<h1>Edit News</h1>
+<p>Existing article update karein</p>
+</div>
+<a href="all-news.html" class="btn btn-outline"><i class="fas fa-arrow-left"></i> Back</a>
+</header>
 
 <form id="editForm">
 
+<div class="form-layout">
+
+<!-- LEFT: FORM FIELDS -->
+<div class="form-card">
+
+<div class="field">
 <label>News Title</label>
 <input type="text" id="title" required>
+</div>
 
+<div class="field-row">
+
+<div class="field">
 <label>Category</label>
-
 <select id="category">
-
 <option>भारत</option>
 <option>उत्तर प्रदेश</option>
 <option>राजनीति</option>
 <option>दुनिया</option>
 <option>खेल</option>
 <option>टेक</option>
-
 </select>
+</div>
 
-<br><br>
+<div class="field">
+<label>Change Image <span class="hint">(optional)</span></label>
+<label class="file-drop">
+<span class="file-drop-icon"><i class="fas fa-cloud-arrow-up"></i></span>
+Click to upload new image
+<input type="file" id="image" accept="image/*">
+</label>
+</div>
 
-<label>
+</div>
+
+<div class="toggle-row">
+<span><i class="fas fa-star" style="color:var(--orange);"></i> Featured News</span>
+<label class="switch">
 <input type="checkbox" id="featured">
-⭐ Featured News
+<span class="slider"></span>
 </label>
+</div>
 
-<br><br>
-
-<label>
+<div class="toggle-row">
+<span><i class="fas fa-bolt" style="color:var(--red);"></i> Breaking News</span>
+<label class="switch">
 <input type="checkbox" id="breaking">
-🚨 Breaking News
+<span class="slider"></span>
 </label>
+</div>
 
-<br><br>
-
+<div class="field" style="margin-top:22px;">
 <label>Summary</label>
-
 <textarea id="summary" rows="4"></textarea>
+</div>
 
-<label>Current Image</label>
-
-<br><br>
-
-<img
-id="preview"
-style="width:250px;border-radius:10px;margin-bottom:20px;">
-
-<label>Change Image (Optional)</label>
-
-<input
-type="file"
-id="image"
-accept="image/*">
-
+<div class="field">
 <label>Full Article</label>
-
 <textarea id="content" rows="12"></textarea>
+</div>
 
-<button type="submit" class="read-btn">
+<div class="form-actions">
+<button type="submit" class="btn btn-primary"><i class="fas fa-check"></i> Update News</button>
+<a href="all-news.html" class="btn btn-outline">Cancel</a>
+</div>
 
-Update News
+</div>
 
-</button>
+<!-- RIGHT: PREVIEW -->
+<div class="form-side">
+
+<div class="side-card">
+<h4>Current Image</h4>
+<div class="preview-frame">
+<img id="preview" alt="Current image">
+</div>
+</div>
+
+<div class="side-card">
+<h4>Notes</h4>
+<ul class="form-tips">
+<li>Naya image select karenge to hi purani image replace hogi, warna current image rehti hai.</li>
+<li>Featured / Breaking toggle on karne se ye article homepage par highlight hoga.</li>
+</ul>
+</div>
+
+</div>
+
+</div>
 
 </form>
-
-<br>
-
-<a href="all-news.html" class="read-btn">
-
-← Back
-
-</a>
 
 </div>
 
