@@ -227,7 +227,8 @@ ${escapeHTML(news.title)}
 <a
 id="shareWhatsapp"
 class="share-btn whatsapp"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fa-brands fa-whatsapp"></i>
 
@@ -236,7 +237,8 @@ target="_blank">
 <a
 id="shareFacebook"
 class="share-btn facebook"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fa-brands fa-facebook-f"></i>
 
@@ -245,7 +247,8 @@ target="_blank">
 <a
 id="shareTwitter"
 class="share-btn twitter"
-target="_blank">
+target="_blank"
+rel="noopener noreferrer">
 
 <i class="fa-brands fa-x-twitter"></i>
 
@@ -372,12 +375,12 @@ snapshot.forEach((item)=>{
 
 if(item.id===id) return;
 
+const data=item.data();
+if(data.category !== news.category) return;
+
 if(count>=5) return;
 
 count++;
-
-const data=item.data();
-if(data.category !== news.category) return;
 
 relatedBox.innerHTML += `
 
@@ -387,7 +390,9 @@ class="related-card">
 
 <img
 src="${escapeHTML(data.image)}"
-alt="${escapeHTML(data.title)}">
+alt="${escapeHTML(data.title)}"
+loading="lazy"
+decoding="async">
 
 <div class="related-info">
 
@@ -466,7 +471,7 @@ Error Loading News
 
 <p>
 
-${error.message}
+${escapeHTML(error.message)}
 
 </p>
 
