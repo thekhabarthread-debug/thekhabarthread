@@ -7,21 +7,46 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All News</title>
+<title>All News | The Khabar Thread CMS</title>
 
 <link rel="stylesheet" href="../style.css">
 
 <link rel="stylesheet" href="admin.css">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
 
 </head>
 
 <body>
 
+<div class="admin-topbar">
+<div class="admin-topbar-inner">
+
+<a href="dashboard.html" class="admin-brand">
+<span class="dot"></span>
+The Khabar Thread <span style="color:var(--muted);font-weight:600;">CMS</span>
+</a>
+
+<nav class="admin-nav">
+<a href="dashboard.html"><i class="fas fa-grip"></i> Dashboard</a>
+<a href="add-news.html"><i class="fas fa-plus"></i> Add News</a>
+<a href="all-news.html" class="active"><i class="fas fa-newspaper"></i> All News</a>
+<a href="ads.html"><i class="fas fa-bullhorn"></i> Ads</a>
+</nav>
+
+</div>
+</div>
+
 <div class="container">
 
-<h1>The Khabar Thread CMS</h1>
+<header class="admin-header">
+<div>
+<h1>All News</h1>
+<p>Sabhi published articles ki list</p>
+</div>
+<a href="add-news.html" class="btn btn-primary"><i class="fas fa-plus"></i> Add News</a>
+</header>
 
-<h2>All News</h2>
+<div class="table-card">
 
 <table class="news-table">
 
@@ -49,13 +74,7 @@
 
 </table>
 
-<br>
-
-<a href="dashboard.html" class="read-btn">
-
-← Dashboard
-
-</a>
+</div>
 
 </div>
 
