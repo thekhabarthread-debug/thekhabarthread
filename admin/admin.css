@@ -305,7 +305,7 @@ FORM CARD (Add / Edit News)
 
 .form-layout{
   display:grid;
-  grid-template-columns:1.6fr 1fr;
+  grid-template-columns:2.2fr 1fr;
   gap:24px;
   align-items:flex-start;
 }
