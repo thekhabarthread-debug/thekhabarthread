@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Edit Advertisement | The Khabar Thread CMS</title>
+
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="admin.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>The Khabar Thread CMS</h1>
+
+<h2>Edit Advertisement</h2>
+
+<form id="editAdForm">
+
+<label>Advertisement Title</label>
+<input type="text" id="title" required>
+
+<label>Current Image</label>
+
+<br><br>
+
+<img
+id="preview"
+style="width:250px;border-radius:10px;margin-bottom:20px;">
+
+<label>Change Image (Optional)</label>
+<input
+type="file"
+id="image"
+accept="image/*">
+
+<label>Link URL (optional)</label>
+<input
+type="url"
+id="link"
+placeholder="https://example.com">
+
+<label>Position</label>
+<select id="position">
+
+<option value="homepage">Homepage</option>
+
+<option value="sidebar">Sidebar</option>
+
+<option value="article">Article</option>
+
+<option value="footer">Footer</option>
+
+</select>
+
+<br><br>
+
+<label>
+
+<input type="checkbox" id="active">
+
+Active Advertisement
+
+</label>
+
+<br><br>
+
+<button type="submit" class="read-btn">
+
+Update Advertisement
+
+</button>
+
+</form>
+
+<br>
+
+<a href="ads.html" class="read-btn">
+
+← Ads Manager
+
+</a>
+
+</div>
+
+<script type="module" src="../js/edit-ad.js"></script>
+
+</body>
+
+</html>
