@@ -5,6 +5,7 @@ PART 1
 ==================================================*/
 
 import { db } from "./js/firebase.js";
+import { escapeHTML } from "./js/escape-html.js";
 
 import {
 collection,
@@ -99,7 +100,7 @@ const breaking=news.find(item=>item.breaking===true);
 
 if(breaking && breakingBar){
 
-breakingBar.innerHTML="🔴 "+breaking.title;
+breakingBar.innerHTML="🔴 "+escapeHTML(breaking.title);
 
 }
 
@@ -122,21 +123,21 @@ topStories.innerHTML+=`
 
 <div class="side-card">
 
-<img src="${item.image}" alt="${item.title}">
+<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}">
 
 <div>
 
 <span>
 
-${item.category}
+${escapeHTML(item.category)}
 
 </span>
 
 <h4>
 
-<a href="news.html?id=${item.id}">
+<a href="news.html?id=${encodeURIComponent(item.id)}">
 
-${item.title}
+${escapeHTML(item.title)}
 
 </a>
 
@@ -169,32 +170,32 @@ newsGrid.innerHTML+=`
 <div class="card fade-up">
 
 <img
-src="${item.image}"
+src="${escapeHTML(item.image)}"
 class="card-image"
-alt="${item.title}">
+alt="${escapeHTML(item.title)}">
 
 <div class="card-content">
 
 <span class="card-category">
 
-${item.category}
+${escapeHTML(item.category)}
 
 </span>
 
 <h3>
 
-${item.title}
+${escapeHTML(item.title)}
 
 </h3>
 
 <p>
 
-${item.summary}
+${escapeHTML(item.summary)}
 
 </p>
 
 <a
-href="news.html?id=${item.id}"
+href="news.html?id=${encodeURIComponent(item.id)}"
 class="read-btn">
 
 पूरा पढ़ें →
@@ -233,25 +234,25 @@ box.innerHTML+=`
 <div class="category-card fade-up">
 
 <img
-src="${item.image}"
-alt="${item.title}">
+src="${escapeHTML(item.image)}"
+alt="${escapeHTML(item.title)}">
 
 <div class="category-content">
 
 <h3>
 
-${item.title}
+${escapeHTML(item.title)}
 
 </h3>
 
 <p>
 
-${item.summary}
+${escapeHTML(item.summary)}
 
 </p>
 
 <a
-href="news.html?id=${item.id}"
+href="news.html?id=${encodeURIComponent(item.id)}"
 class="view-more">
 
 पूरा पढ़ें →
@@ -311,13 +312,13 @@ const ad=adSnap.docs[0].data();
 adBox.innerHTML=`
 
 <a
-href="${ad.link}"
+href="${escapeHTML(ad.link)}"
 target="_blank"
 class="homepage-ad">
 
 <img
-src="${ad.image}"
-alt="${ad.title}">
+src="${escapeHTML(ad.image)}"
+alt="${escapeHTML(ad.title)}">
 
 </a>
 
