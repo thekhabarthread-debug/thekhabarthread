@@ -4,7 +4,9 @@ import {
 collection,
 getDocs,
 query,
-orderBy
+orderBy,
+deleteDoc,
+doc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 /*=========================================
@@ -87,7 +89,7 @@ ${ad.active ? "🟢 Active" : "🔴 Inactive"}
 
 <button
 class="read-btn edit-btn"
-data-id="${doc.id}">
+onclick="editAd('${doc.id}')">
 
 Edit
 
@@ -95,7 +97,7 @@ Edit
 
 <button
 class="delete-btn"
-data-id="${doc.id}">
+onclick="deleteAd('${doc.id}')">
 
 Delete
 
@@ -138,4 +140,26 @@ START
 =========================================*/
 
 loadAds();
+
+/*=========================================
+DELETE / EDIT
+=========================================*/
+
+window.deleteAd = async function(id){
+
+const ok = confirm("Delete this Advertisement?");
+
+if(!ok) return;
+
+await deleteDoc(doc(db,"ads",id));
+
+loadAds();
+
+}
+
+window.editAd = function(id){
+
+location.href="edit-ad.html?id="+id;
+
+}
 
