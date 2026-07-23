@@ -1,5 +1,6 @@
 import { db } from "./firebase.js";
 import { auth } from "./auth.js";
+import { attachImagePaste } from "./paste-image-upload.js";
 
 import {
   collection,
@@ -24,6 +25,8 @@ onAuthStateChanged(auth, (user) => {
     window.location.href = "login.html";
   }
 });
+
+attachImagePaste(document.getElementById("content"));
 
 const form = document.getElementById("newsForm");
 
