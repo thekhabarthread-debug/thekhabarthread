@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-68089CPZ4B"></script>
-<script>
-window.dataLayer = window.dataLayer || [];
-function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-68089CPZ4B');
-</script>
-
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -124,8 +115,22 @@ Click to upload image
 </div>
 
 <div class="field">
-<label>Full Article <span class="hint">(YouTube link akele paste karein → video ban jayega. Image seedha copy-paste (Ctrl+V) karein jahan chahiye → wahin lag jayegi)</span></label>
-<textarea id="content" rows="20" placeholder="Poora article yahan likhein...&#10;&#10;YouTube video embed karne ke liye, uska link is tarah alag line par paste karein:&#10;https://www.youtube.com/watch?v=XXXXXXXXXXX&#10;&#10;Image lagane ke liye, cursor jahan chahiye wahan rakhkar seedha paste (Ctrl+V) kar dein."></textarea>
+<label>Full Article</label>
+
+<div class="editor-toolbar" data-target="content">
+<button type="button" data-cmd="bold" title="Bold (**text**)"><i class="fas fa-bold"></i></button>
+<button type="button" data-cmd="italic" title="Italic (*text*)"><i class="fas fa-italic"></i></button>
+<button type="button" data-cmd="heading" title="Heading (### text)"><i class="fas fa-heading"></i></button>
+<button type="button" data-cmd="list" title="Bullet list (- text)"><i class="fas fa-list-ul"></i></button>
+<button type="button" data-cmd="quote" title="Quote (&gt; text)"><i class="fas fa-quote-right"></i></button>
+<button type="button" data-cmd="link" title="Link"><i class="fas fa-link"></i></button>
+<span class="editor-toolbar-spacer"></span>
+<button type="button" data-cmd="preview" title="Preview"><i class="fas fa-eye"></i> Preview</button>
+</div>
+
+<textarea id="content" rows="20" placeholder="Poora article yahan likhein..."></textarea>
+<div class="editor-preview" style="display:none;"></div>
+<p class="editor-hint">Formatting: <code>**bold**</code>, <code>*italic*</code>, <code>### heading</code>, <code>- list</code>, <code>&gt; quote</code>, <code>[text](https://link)</code></p>
 </div>
 
 <div class="form-actions">
@@ -152,8 +157,6 @@ No image selected
 <li>Summary short aur clear rakhein, ye card aur social preview mein dikhta hai.</li>
 <li>Image landscape (16:9) ho to homepage par sabse achha lagta hai.</li>
 <li>Publish karne ke baad "All News" mein jaake Featured / Breaking flag set kar sakte hain.</li>
-<li>YouTube video dalne ke liye link ko article ke andar ek alag line par akela paste karein — text ke saath mila hua nahi. Publish hote hi wahan video embed ho jayega.</li>
-<li>Image lagane ke liye article ke andar jahan chahiye wahan cursor rakhkar seedha paste (Ctrl+V) kar dein — image apne aap upload hokar wahin lag jayegi.</li>
 </ul>
 </div>
 
@@ -165,6 +168,7 @@ No image selected
 
 </div>
 
+<script type="module" src="../js/editor-toolbar.js"></script>
 <script type="module" src="../js/add-news.js"></script>
 <script>
 const imgInput = document.getElementById("image");

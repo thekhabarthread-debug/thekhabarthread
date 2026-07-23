@@ -71,12 +71,6 @@ ${news.date}
 
 </td>
 
-<td class="views-count">
-
-<i class="fas fa-eye"></i> ${news.views || 0}
-
-</td>
-
 <td>
 
 <button

@@ -6,13 +6,11 @@ PART 1
 
 import { db } from "./firebase.js";
 import { escapeHTML } from "./escape-html.js";
-import { renderContentWithEmbeds } from "./content-embeds.js";
+import { formatContent } from "./content-format.js";
 
 import {
 doc,
 getDoc,
-updateDoc,
-increment,
 collection,
 getDocs,
 query,
@@ -60,14 +58,6 @@ return;
 }
 
 const news = docSnap.data();
-
-// Fire-and-forget view counter — shown next to each article in the
-// admin All News page. Never blocks or breaks the article render
-// if it fails (e.g. offline, or rules reject it).
-updateDoc(docRef,{ views: increment(1) }).catch((err)=>{
-console.warn("View counter update failed:",err);
-});
-
 const schema=document.getElementById("news-schema");
 
 if(schema){
@@ -280,7 +270,7 @@ ${escapeHTML(news.summary)}
 
 <div class="content">
 
-${renderContentWithEmbeds(news.content)}
+${formatContent(news.content)}
 
 </div>
 
