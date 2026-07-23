@@ -519,6 +519,20 @@ transition:.5s;
 
 }
 
+.hero-image img.hero-loading{
+
+opacity:0;
+
+}
+
+.hero-image img:not(.hero-loading){
+
+opacity:1;
+
+transition:opacity .35s ease, transform .5s;
+
+}
+
 .hero-main:hover .hero-image img{
 
 transform:scale(1.05);

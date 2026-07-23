@@ -82,6 +82,10 @@ HERO
 
 const hero=news.find(item=>item.featured===true) || news[0];
 
+heroImage.onload=()=>{
+    heroImage.classList.remove("hero-loading");
+};
+
 heroImage.src=hero.image;
 
 heroImage.alt=hero.title;
