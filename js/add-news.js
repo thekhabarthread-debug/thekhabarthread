@@ -1,31 +1,24 @@
 import { db } from "./firebase.js";
-import { auth } from "./auth.js";
+import { requireAdmin } from "./auth.js";
 
 import {
   collection,
   addDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
-const ADMIN_EMAIL = "thekhabarthread@gmail.com";
-
-// Same fix as edit-news.js: this page never initialized Firebase
-// Auth before, so writes had no identity attached and were
-// rejected by the security rules.
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    alert("Aap login nahi hain. Login page par bhej rahe hain.");
-    window.location.href = "login.html";
-    return;
-  }
-  if (user.email !== ADMIN_EMAIL) {
-    alert("Access Denied");
-    window.location.href = "login.html";
-  }
-});
+requireAdmin(() => {});
 
 const form = document.getElementById("newsForm");
+const submitBtn = form.querySelector('button[type="submit"]');
+const submitBtnDefaultHTML = submitBtn ? submitBtn.innerHTML : "";
+
+function setSubmitting(isSubmitting) {
+    if (!submitBtn) return;
+    submitBtn.disabled = isSubmitting;
+    submitBtn.innerHTML = isSubmitting
+        ? '<i class="fas fa-spinner fa-spin"></i> Publishing...'
+        : submitBtnDefaultHTML;
+}
 
 form.addEventListener("submit", async (e) => {
 
@@ -47,6 +40,8 @@ form.addEventListener("submit", async (e) => {
         alert("कृपया 5 MB से छोटी JPG, PNG या WebP image चुनें।");
         return;
     }
+
+    setSubmitting(true);
 
     try {
 
@@ -103,6 +98,12 @@ form.addEventListener("submit", async (e) => {
         console.error(error);
 
         alert(error.message);
+
+    }
+
+    finally {
+
+        setSubmitting(false);
 
     }
 
