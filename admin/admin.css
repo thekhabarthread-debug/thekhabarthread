@@ -698,3 +698,17 @@ RESPONSIVE
   .admin-topbar-inner{flex-direction:column;align-items:flex-start;}
   .news-table{font-size:13px;}
 }
+/*==========================================================
+VIEWS COUNT (All News table)
+==========================================================*/
+
+.views-count{
+  white-space:nowrap;
+  color:#555;
+  font-weight:600;
+}
+
+.views-count i{
+  color:#f59e0b;
+  margin-right:4px;
+}
