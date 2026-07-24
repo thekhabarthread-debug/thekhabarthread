@@ -1,5 +1,5 @@
 import { db } from "./firebase.js";
-import { requireAdmin } from "./auth.js";
+import { auth } from "./auth.js";
 
 import {
   doc,
@@ -7,20 +7,26 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-requireAdmin(() => {});
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+const ADMIN_EMAIL = "thekhabarthread@gmail.com";
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Aap login nahi hain. Login page par bhej rahe hain.");
+    window.location.href = "login.html";
+    return;
+  }
+  if (user.email !== ADMIN_EMAIL) {
+    alert("Access Denied");
+    window.location.href = "login.html";
+  }
+});
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
 const form = document.getElementById("editAdForm");
-const submitBtn = form.querySelector('button[type="submit"]');
-const submitBtnDefaultHTML = submitBtn ? submitBtn.innerHTML : "";
-
-function setSubmitting(isSubmitting) {
-    if (!submitBtn) return;
-    submitBtn.disabled = isSubmitting;
-    submitBtn.innerHTML = isSubmitting ? "Saving..." : submitBtnDefaultHTML;
-}
 
 let currentImage = "";
 
@@ -81,8 +87,6 @@ form.addEventListener("submit", async (e) => {
 
     e.preventDefault();
 
-    setSubmitting(true);
-
     try {
 
         let image = currentImage;
@@ -90,11 +94,6 @@ form.addEventListener("submit", async (e) => {
         const imageFile = document.getElementById("image").files[0];
 
         if (imageFile) {
-
-            if (!imageFile.type.startsWith("image/") || imageFile.size > 5 * 1024 * 1024) {
-                alert("कृपया 5 MB से छोटी JPG, PNG या WebP image चुनें।");
-                return;
-            }
 
             const formData = new FormData();
 
@@ -111,12 +110,6 @@ form.addEventListener("submit", async (e) => {
             );
 
             const imageData = await upload.json();
-
-            if (!imageData.secure_url) {
-                console.log(imageData);
-                alert("Image upload failed.");
-                return;
-            }
 
             image = imageData.secure_url;
 
@@ -147,12 +140,6 @@ form.addEventListener("submit", async (e) => {
         console.error(error);
 
         alert(error.message);
-
-    }
-
-    finally {
-
-        setSubmitting(false);
 
     }
 

@@ -1,6 +1,5 @@
 import { db } from "./firebase.js";
-import { requireAdmin } from "./auth.js";
-import { escapeHTML } from "./escape-html.js";
+import { auth } from "./auth.js";
 
 import {
 collection,
@@ -11,8 +10,20 @@ deleteDoc,
 doc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-requireAdmin(() => {
-  loadAds();
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+const ADMIN_EMAIL = "thekhabarthread@gmail.com";
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Aap login nahi hain. Login page par bhej rahe hain.");
+    window.location.href = "login.html";
+    return;
+  }
+  if (user.email !== ADMIN_EMAIL) {
+    alert("Access Denied");
+    window.location.href = "login.html";
+  }
 });
 
 /*=========================================
@@ -68,20 +79,20 @@ table.innerHTML+=`
 <td>
 
 <img
-src="${escapeHTML(ad.image)}"
+src="${ad.image}"
 style="width:120px;border-radius:8px;">
 
 </td>
 
 <td>
 
-${escapeHTML(ad.title)}
+${ad.title}
 
 </td>
 
 <td>
 
-${escapeHTML(ad.position)}
+${ad.position}
 
 </td>
 
@@ -129,7 +140,7 @@ table.innerHTML=`
 
 <td colspan="5">
 
-${escapeHTML(error.message)}
+${error.message}
 
 </td>
 
@@ -140,6 +151,12 @@ ${escapeHTML(error.message)}
 }
 
 }
+
+/*=========================================
+START
+=========================================*/
+
+loadAds();
 
 /*=========================================
 DELETE / EDIT

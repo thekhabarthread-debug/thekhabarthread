@@ -7,8 +7,7 @@ import {
   collection,
   getDocs,
   query,
-  orderBy,
-  where
+  orderBy
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const params = new URLSearchParams(window.location.search);
@@ -36,7 +35,6 @@ async function loadCategoryNews() {
 
         const q = query(
             collection(db, "news"),
-            where("category", "==", category),
             orderBy("createdAt", "desc")
         );
 
@@ -50,6 +48,8 @@ async function loadCategoryNews() {
         snapshot.forEach((doc) => {
 
             const news = doc.data();
+
+            if (news.category !== category) return;
 
             total++;
 

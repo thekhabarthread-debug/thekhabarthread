@@ -1,6 +1,5 @@
 import { db } from "./firebase.js";
-import { requireAdmin } from "./auth.js";
-import { escapeHTML } from "./escape-html.js";
+import { auth } from "./auth.js";
 
 import {
   collection,
@@ -11,8 +10,20 @@ import {
   doc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-requireAdmin(() => {
-  loadNews();
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+const ADMIN_EMAIL = "thekhabarthread@gmail.com";
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Aap login nahi hain. Login page par bhej rahe hain.");
+    window.location.href = "login.html";
+    return;
+  }
+  if (user.email !== ADMIN_EMAIL) {
+    alert("Access Denied");
+    window.location.href = "login.html";
+  }
 });
 
 const table = document.getElementById("newsTable");
@@ -38,25 +49,31 @@ async function loadNews() {
 
 <td>
 
-<img src="${escapeHTML(news.image)}" alt="${escapeHTML(news.title)}">
+<img src="${news.image}" alt="${news.title}">
 
 </td>
 
 <td class="news-title">
 
-${escapeHTML(news.title)}
+${news.title}
 
 </td>
 
 <td>
 
-${escapeHTML(news.category)}
+${news.category}
 
 </td>
 
 <td>
 
-${escapeHTML(news.date)}
+${news.date}
+
+</td>
+
+<td class="views-count">
+
+<i class="fas fa-eye"></i> ${news.views || 0}
 
 </td>
 
@@ -105,3 +122,5 @@ window.editNews = function(id){
 location.href="edit-news.html?id="+id;
 
 }
+
+loadNews();
