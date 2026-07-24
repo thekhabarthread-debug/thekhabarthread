@@ -100,9 +100,11 @@ BREAKING
 
 const breaking=news.find(item=>item.breaking===true);
 
-if(breaking && breakingBar){
+const breakingBarText = breakingBar ? breakingBar.querySelector(".breaking-bar-text") : null;
 
-breakingBar.textContent="🔴 "+breaking.title;
+if(breaking && breakingBarText){
+
+breakingBarText.textContent="🔴 "+breaking.title;
 
 }
 

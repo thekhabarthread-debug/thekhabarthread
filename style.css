@@ -388,7 +388,21 @@ flex:1;
 
 min-width:0;
 
+height:48px;
+
 overflow:hidden;
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+}
+
+.breaking-bar-text{
+
+display:inline-block;
 
 padding-left:18px;
 
@@ -406,7 +420,7 @@ to{transform:translateX(-100%)}
 }
 
 @media (prefers-reduced-motion:reduce){
-.breaking-bar{animation:none;white-space:normal}
+.breaking-bar-text{animation:none;white-space:normal}
 }
 
 /*========================
@@ -1582,11 +1596,17 @@ padding:12px 18px;
 
 .breaking-bar{
 
-padding:12px 18px;
+padding:0 18px;
 
 width:100%;
 
 flex:none;
+
+}
+
+.breaking-bar-text{
+
+padding-left:0;
 
 }
 
