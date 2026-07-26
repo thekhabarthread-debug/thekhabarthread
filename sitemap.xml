@@ -1,58 +1,180 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-
-<url>
-<loc>https://thekhabarthread.in/</loc>
-<changefreq>hourly</changefreq>
-<priority>1.0</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/category.html?name=%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4</loc>
-<changefreq>daily</changefreq>
-<priority>0.9</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/category.html?name=%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6</loc>
-<changefreq>daily</changefreq>
-<priority>0.9</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/category.html?name=%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A4%A8%E0%A5%80%E0%A4%A4%E0%A4%BF</loc>
-<changefreq>daily</changefreq>
-<priority>0.9</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/category.html?name=%E0%A4%A6%E0%A5%81%E0%A4%A8%E0%A4%BF%E0%A4%AF%E0%A4%BE</loc>
-<changefreq>daily</changefreq>
-<priority>0.9</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/category.html?name=%E0%A4%96%E0%A5%87%E0%A4%B2</loc>
-<changefreq>daily</changefreq>
-<priority>0.9</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/category.html?name=%E0%A4%9F%E0%A5%87%E0%A4%95</loc>
-<changefreq>daily</changefreq>
-<priority>0.9</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/about.html</loc>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
-<url>
-<loc>https://thekhabarthread.in/contact.html</loc>
-<changefreq>monthly</changefreq>
-<priority>0.5</priority>
-</url>
-
+  <url>
+    <loc>https://thekhabarthread.in/</loc>
+    <changefreq>hourly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/category.html?name=%E0%A4%AD%E0%A4%BE%E0%A4%B0%E0%A4%A4</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/category.html?name=%E0%A4%89%E0%A4%A4%E0%A5%8D%E0%A4%A4%E0%A4%B0%20%E0%A4%AA%E0%A5%8D%E0%A4%B0%E0%A4%A6%E0%A5%87%E0%A4%B6</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/category.html?name=%E0%A4%B0%E0%A4%BE%E0%A4%9C%E0%A4%A8%E0%A5%80%E0%A4%A4%E0%A4%BF</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/category.html?name=%E0%A4%A6%E0%A5%81%E0%A4%A8%E0%A4%BF%E0%A4%AF%E0%A4%BE</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/category.html?name=%E0%A4%96%E0%A5%87%E0%A4%B2</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/category.html?name=%E0%A4%9F%E0%A5%87%E0%A4%95</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/contact.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=0JFqPvEmq9fOKTIvJXWF</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=0r8pBXLDhRKGOCd75muf</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=1OlMbDwjFzAQnZ8wjjJW</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=1WwjNbpO6BbmqbDkOPZa</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=1sb8JwdD1mp33jcHQXqx</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=77X7h1YA4UXfHoeNXvyF</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=8r9ArOo9lyKXAicOuFZa</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=AoKT8Vwhbm3s3eRbt6SO</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=E5LOjnjjpoV5mcRwEMW6</loc>
+    <lastmod>2026-07-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=K3kKR0wBfzUKO4xdv3yM</loc>
+    <lastmod>2026-07-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=PEpIpm9ZLNB9SHTM7cuV</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=Qp4c9X3PgohG4NdN92iz</loc>
+    <lastmod>2026-07-12</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=RnVcozFf6J4iY0V9rAEE</loc>
+    <lastmod>2026-07-18</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=TYmaSmO9TGJFp010Kok4</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=WXfMEF5i6X1d0DgofMI0</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=X4iEstTp3d8eJnvqEIMU</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=XLfSy5W3vcOzR2A8arkS</loc>
+    <lastmod>2026-07-24</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=eKAZPL2Hxe14oQcfQoth</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=hkXLU9Y5Pwum9XoCvqdB</loc>
+    <lastmod>2026-07-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=jR0WjmVIDAdy2Dvxhh7l</loc>
+    <lastmod>2026-07-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=sInv17gnMC9zwu8NdaX3</loc>
+    <lastmod>2026-07-20</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=wUmBzMsAyBVqmFqTN66h</loc>
+    <lastmod>2026-07-21</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
