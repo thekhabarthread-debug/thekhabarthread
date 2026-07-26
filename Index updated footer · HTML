@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="hi">
+
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-68089CPZ4B"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-68089CPZ4B');
+</script>
+
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>
+आज की सबसे बड़ी खबर पढ़ने के लिए क्लिक करें | The Khabar Thread
+</title>
+
+<meta name="description"
+content="The Khabar Thread - भारत, उत्तर प्रदेश, राजनीति, खेल, दुनिया, टेक और ताज़ा खबरें सबसे पहले।">
+
+<meta name="keywords"
+content="The Khabar Thread, Hindi News, India News, UP News, Breaking News, Politics, Sports, Technology">
+
+<meta name="author"
+content="The Khabar Thread">
+
+<meta name="robots"
+content="index,follow">
+
+<meta name="theme-color"
+content="#B71C1C">
+
+<meta name="language"
+content="hi">
+
+<link rel="canonical"
+href="https://thekhabarthread.in/">
+
+<!-- Open Graph -->
+
+<meta property="og:type"
+content="website">
+
+<meta property="og:title"
+content="The Khabar Thread">
+
+<meta property="og:description"
+content="भारत और दुनिया की ताज़ा खबरें सबसे पहले।">
+
+<meta property="og:url"
+content="https://thekhabarthread.in/">
+
+<meta property="og:image"
+content="https://thekhabarthread.in/assets/logo.png">
+
+<meta property="og:site_name"
+content="The Khabar Thread">
+
+<!-- Twitter -->
+
+<meta name="twitter:card"
+content="summary_large_image">
+
+<meta name="twitter:title"
+content="The Khabar Thread">
+
+<meta name="twitter:description"
+content="भारत और दुनिया की ताज़ा खबरें सबसे पहले।">
+
+<meta name="twitter:image"
+content="https://thekhabarthread.in/assets/logo.png">
+
+<link rel="icon"
+type="image/png"
+href="assets/favicon.png">
+
+<link rel="stylesheet"
+href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700;900&family=Noto+Sans:wght@400;500;600;700&display=swap"
+rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"NewsMediaOrganization",
+  "name":"The Khabar Thread",
+  "url":"https://thekhabarthread.in",
+  "logo":"https://thekhabarthread.in/assets/logo.png",
+  "description":"भारत और दुनिया की ताज़ा खबरें, राजनीति, उत्तर प्रदेश, खेल, टेक और ब्रेकिंग न्यूज़।",
+  "sameAs":[]
+}
+</script>
+</head>
+
+<body>
+
+<!-- ================= HEADER ================= -->
+
+<header class="header">
+
+<div class="top">
+
+<div class="container top-header">
+
+<a href="index.html">
+
+<img src="assets/logo.png" class="logo" alt="The Khabar Thread">
+
+</a>
+
+<div class="header-right">
+
+<div class="search-box">
+
+<input
+type="text"
+id="searchInput"
+placeholder="Search News..."
+aria-label="खबरें खोजें">
+
+<button type="button" aria-label="खोजें">
+
+🔍
+
+</button>
+
+</div>
+
+<div class="live-box">
+
+<span class="live-dot"></span>
+
+LIVE
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<nav class="navbar">
+
+<a href="index.html">Home</a>
+
+<a href="category.html?name=भारत">भारत</a>
+
+<a href="category.html?name=उत्तर प्रदेश">उत्तर प्रदेश</a>
+
+<a href="category.html?name=राजनीति">राजनीति</a>
+
+<a href="category.html?name=दुनिया">दुनिया</a>
+
+<a href="category.html?name=खेल">खेल</a>
+
+<a href="category.html?name=टेक">टेक</a>
+
+<a href="category.html?name=वीडियो">वीडियो</a>
+
+</nav>
+
+</header>
+
+<!-- ================= BREAKING ================= -->
+
+<section class="breaking" aria-label="ब्रेकिंग न्यूज़">
+
+<span>
+
+🔴 BREAKING NEWS
+
+</span>
+
+<div id="breaking-bar" class="breaking-bar" aria-live="polite">
+
+<span class="breaking-bar-text">Loading Breaking News...</span>
+
+</div>
+
+</section>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="container">
+
+<div class="hero-grid">
+
+<!-- MAIN HERO -->
+
+<div class="hero-main">
+
+<div class="hero-image">
+
+<img id="hero-image" src="assets/news/hero.jpg" alt="Featured News" fetchpriority="high">
+
+</div>
+
+<div class="hero-content">
+
+<span class="category" id="hero-category">
+
+Featured
+
+</span>
+
+<h1 id="hero-title">ताज़ा खबरें लोड हो रही हैं…</h1>
+
+<p id="hero-summary"></p>
+
+<a id="hero-read" href="#" class="read-btn">
+
+पूरा पढ़ें →
+
+</a>
+
+</div>
+
+</div>
+
+<!-- RIGHT SIDE -->
+
+<div class="hero-sidebar">
+
+<h2>
+
+Top Stories
+
+</h2>
+
+<div id="top-stories">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= HOME AD ================= -->
+
+<section class="home-ad">
+
+<div class="container">
+
+<div id="homepage-ad">
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TOP STORIES END ================= -->
+ <!-- ================= LATEST NEWS ================= -->
+
+<section class="latest" id="latest-news">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>🔥 Latest News</h2>
+
+<a href="#latest-news">View All →</a>
+
+</div>
+
+<div class="grid" id="news-grid">
+
+<!-- Firestore Latest News -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= LATEST NEWS END ================= -->
+
+
+<!-- ================= INDIA SECTION ================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>🇮🇳 भारत</h2>
+
+<a href="category.html?name=भारत">
+
+और पढ़ें →
+
+</a>
+
+</div>
+
+<div class="category-grid" id="india-news">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= INDIA END ================= -->
+
+
+<!-- ================= UTTAR PRADESH ================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>📍 उत्तर प्रदेश</h2>
+
+<a href="category.html?name=उत्तर प्रदेश">
+
+और पढ़ें →
+
+</a>
+
+</div>
+
+<div class="category-grid" id="up-news">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= UP END ================= -->
+
+
+<!-- ================= WORLD ================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>🌍 दुनिया</h2>
+
+<a href="category.html?name=दुनिया">
+
+और पढ़ें →
+
+</a>
+
+</div>
+
+<div class="category-grid" id="world-news">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= WORLD END ================= -->
+
+
+<!-- ================= POLITICS ================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>🏛 राजनीति</h2>
+
+<a href="category.html?name=राजनीति">
+
+और पढ़ें →
+
+</a>
+
+</div>
+
+<div class="category-grid" id="politics-news">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= POLITICS END ================= -->
+
+<!-- ================= SPORTS ================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>🏏 खेल</h2>
+
+<a href="category.html?name=खेल">
+
+और पढ़ें →
+
+</a>
+
+</div>
+
+<div class="category-grid" id="sports-news">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= SPORTS END ================= -->
+
+
+<!-- ================= TECH ================= -->
+
+<section class="category-section">
+
+<div class="container">
+
+<div class="section-header">
+
+<h2>💻 टेक</h2>
+
+<a href="category.html?name=टेक">
+
+और पढ़ें →
+
+</a>
+
+</div>
+
+<div class="category-grid" id="tech-news">
+
+<!-- Firestore -->
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= TECH END ================= -->
+
+
+<!-- ================= VIDEO SECTION REMOVED ================= -->
+
+
+<!-- ================= NEWSLETTER ================= -->
+
+<section class="newsletter">
+
+<div class="container">
+
+<h2>
+
+The Khabar Thread
+
+</h2>
+
+<p>
+
+देश-दुनिया की बड़ी खबरें सबसे पहले पढ़ें।
+
+</p>
+
+</div>
+
+</section>
+
+<!-- ================= NEWSLETTER END ================= -->
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+<div class="container footer-grid">
+
+<div>
+
+<img
+src="assets/logo.png"
+class="footer-logo"
+alt="The Khabar Thread">
+
+<p>
+
+विश्वसनीय डिजिटल समाचार मंच।
+
+</p>
+
+</div>
+
+<div>
+
+<h3>
+
+Categories
+
+</h3>
+
+<ul>
+
+<li><a href="category.html?name=भारत">भारत</a></li>
+
+<li><a href="category.html?name=उत्तर प्रदेश">उत्तर प्रदेश</a></li>
+
+<li><a href="category.html?name=राजनीति">राजनीति</a></li>
+
+<li><a href="category.html?name=दुनिया">दुनिया</a></li>
+
+<li><a href="category.html?name=खेल">खेल</a></li>
+
+<li><a href="category.html?name=टेक">टेक</a></li>
+
+</ul>
+
+</div>
+
+<div>
+
+<h3>Quick Links</h3>
+
+<ul>
+
+<li><a href="about.html">About Us</a></li>
+
+<li><a href="contact.html">Contact Us</a></li>
+
+<li><a href="privacy-policy.html">Privacy Policy</a></li>
+
+<li><a href="terms.html">Terms &amp; Conditions</a></li>
+
+<li><a href="disclaimer.html">Disclaimer</a></li>
+
+<li><a href="editorial-policy.html">Editorial Policy</a></li>
+
+<li><a href="fact-check-policy.html">Fact Check Policy</a></li>
+
+<li><a href="corrections-policy.html">Corrections Policy</a></li>
+
+<li><a href="grievance-policy.html">Grievance Redressal</a></li>
+
+<li><a href="advertise.html">Advertise With Us</a></li>
+
+</ul>
+
+</div>
+
+<div class="copyright">
+
+© 2026 The Khabar Thread | All Rights Reserved.
+
+</div>
+
+</div>
+
+</footer>
+
+<script type="module" src="script.js"></script>
+
+</body>
+
+</html>
