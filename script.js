@@ -6,6 +6,7 @@ PART 1
 
 import { db } from "./js/firebase.js";
 import { escapeHTML } from "./js/escape-html.js";
+import { optimizedImageUrl } from "./js/image-utils.js";
 
 import {
 collection,
@@ -82,7 +83,7 @@ HERO
 
 const hero=news.find(item=>item.featured===true) || news[0];
 
-heroImage.src=hero.image;
+heroImage.src=optimizedImageUrl(hero.image,1400);
 
 heroImage.alt=hero.title;
 
@@ -127,7 +128,7 @@ topStories.innerHTML+=`
 
 <div class="side-card">
 
-<img src="${escapeHTML(item.image)}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async">
+<img src="${escapeHTML(optimizedImageUrl(item.image,640))}" alt="${escapeHTML(item.title)}" loading="lazy" decoding="async" width="640" height="360">
 
 <div>
 
@@ -174,9 +175,9 @@ newsGrid.innerHTML+=`
 <div class="card fade-up">
 
 <img
-src="${escapeHTML(item.image)}"
+src="${escapeHTML(optimizedImageUrl(item.image,720))}"
 class="card-image"
-alt="${escapeHTML(item.title)}"
+alt="${escapeHTML(item.title)}" width="720" height="405"
 loading="lazy"
 decoding="async">
 
@@ -240,8 +241,8 @@ box.innerHTML+=`
 <div class="category-card fade-up">
 
 <img
-src="${escapeHTML(item.image)}"
-alt="${escapeHTML(item.title)}"
+src="${escapeHTML(optimizedImageUrl(item.image,720))}"
+alt="${escapeHTML(item.title)}" width="720" height="405"
 loading="lazy"
 decoding="async">
 
@@ -326,7 +327,7 @@ rel="noopener noreferrer sponsored"
 class="homepage-ad">
 
 <img
-src="${escapeHTML(ad.image)}"
+src="${escapeHTML(optimizedImageUrl(ad.image,1200))}"
 alt="${escapeHTML(ad.title)}"
 loading="lazy"
 decoding="async">

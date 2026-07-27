@@ -1,5 +1,6 @@
 import { db } from "./firebase.js";
 import { escapeHTML } from "./escape-html.js";
+import { optimizedImageUrl } from "./image-utils.js";
 
 
 import {
@@ -7,7 +8,8 @@ import {
   collection,
   getDocs,
   query,
-  orderBy
+  where,
+  limit
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 const params = new URLSearchParams(window.location.search);
@@ -35,7 +37,8 @@ async function loadCategoryNews() {
 
         const q = query(
             collection(db, "news"),
-            orderBy("createdAt", "desc")
+            where("category", "==", category),
+            limit(100)
         );
 
         const snapshot = await getDocs(q);
@@ -45,11 +48,13 @@ async function loadCategoryNews() {
 
         let total = 0;
 
-        snapshot.forEach((doc) => {
+        const categoryDocuments = [...snapshot.docs].sort(
+            (a, b) => (b.data().createdAt || 0) - (a.data().createdAt || 0)
+        );
+
+        categoryDocuments.forEach((doc) => {
 
             const news = doc.data();
-
-            if (news.category !== category) return;
 
             total++;
 
@@ -57,7 +62,7 @@ async function loadCategoryNews() {
 
             <div class="category-card">
 
-                <img src="${escapeHTML(news.image)}" alt="${escapeHTML(news.title)}" loading="lazy" decoding="async">
+                <img src="${escapeHTML(optimizedImageUrl(news.image,720))}" alt="${escapeHTML(news.title)}" loading="lazy" decoding="async" width="720" height="405">
 
                 <div class="category-content">
 

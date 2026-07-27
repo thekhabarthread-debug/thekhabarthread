@@ -1,0 +1,13 @@
+{
+  "name": "thekhabarthread",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "check": "node scripts/check-project.js"
+  },
+  "devDependencies": {
+    "wrangler": "^4.27.0"
+  }
+}

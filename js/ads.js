@@ -1,5 +1,7 @@
 import { db } from "./firebase.js";
-import { auth } from "./auth.js";
+import { requireAdmin } from "./auth.js";
+import { escapeHTML } from "./escape-html.js";
+import { optimizedImageUrl } from "./image-utils.js";
 
 import {
 collection,
@@ -10,21 +12,7 @@ deleteDoc,
 doc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
-const ADMIN_EMAIL = "thekhabarthread@gmail.com";
-
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    alert("Aap login nahi hain. Login page par bhej rahe hain.");
-    window.location.href = "login.html";
-    return;
-  }
-  if (user.email !== ADMIN_EMAIL) {
-    alert("Access Denied");
-    window.location.href = "login.html";
-  }
-});
+requireAdmin();
 
 /*=========================================
 LOAD ADS
@@ -79,20 +67,20 @@ table.innerHTML+=`
 <td>
 
 <img
-src="${ad.image}"
+src="${escapeHTML(optimizedImageUrl(ad.image,240))}"
 style="width:120px;border-radius:8px;">
 
 </td>
 
 <td>
 
-${ad.title}
+${escapeHTML(ad.title)}
 
 </td>
 
 <td>
 
-${ad.position}
+${escapeHTML(ad.position)}
 
 </td>
 
@@ -179,4 +167,3 @@ window.editAd = function(id){
 location.href="edit-ad.html?id="+id;
 
 }
-

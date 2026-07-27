@@ -7,16 +7,16 @@ PART 1
 import { db } from "./firebase.js";
 import { escapeHTML } from "./escape-html.js";
 import { renderContentWithEmbeds } from "./content-embeds.js";
+import { optimizedImageUrl } from "./image-utils.js";
 
 import {
 doc,
 getDoc,
-updateDoc,
-increment,
 collection,
 getDocs,
 query,
-orderBy
+where,
+limit
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 /*=========================================
@@ -61,12 +61,11 @@ return;
 
 const news = docSnap.data();
 
-// Fire-and-forget view counter — shown next to each article in the
-// admin All News page. Never blocks or breaks the article render
-// if it fails (e.g. offline, or rules reject it).
-updateDoc(docRef,{ views: increment(1) }).catch((err)=>{
-console.warn("View counter update failed:",err);
-});
+// Analytics is the source of truth for article views. Firestore
+// counters are not writable by public visitors, preventing fake views.
+if (typeof window.gtag === "function") {
+window.gtag("event","article_view",{article_id:id,article_title:news.title});
+}
 
 const schema=document.getElementById("news-schema");
 
@@ -80,11 +79,11 @@ schema.textContent=JSON.stringify({
 
 headline:news.title,
 
-image:[news.image],
+image:[optimizedImageUrl(news.image,1200,"social")],
 
-datePublished:news.date,
+datePublished:new Date(news.createdAt || Date.now()).toISOString(),
 
-dateModified:news.date,
+dateModified:new Date(news.updatedAt || news.createdAt || Date.now()).toISOString(),
 
 description:news.summary,
 
@@ -142,7 +141,7 @@ const canonical = document.getElementById("canonical-link");
 
 if(canonical){
 
-canonical.href = window.location.href;
+canonical.href = `https://thekhabarthread.in/news.html?id=${encodeURIComponent(id)}`;
 
 }
 
@@ -165,13 +164,13 @@ ogDescription.content=news.summary;
 
 if(ogImage){
 
-ogImage.content=news.image;
+ogImage.content=optimizedImageUrl(news.image,1200,"social");
 
 }
 
 if(ogUrl){
 
-ogUrl.content=window.location.href;
+ogUrl.content=`https://thekhabarthread.in/news.html?id=${encodeURIComponent(id)}`;
 
 }
 
@@ -193,7 +192,7 @@ twitterDescription.content=news.summary;
 
 if(twitterImage){
 
-twitterImage.content=news.image;
+twitterImage.content=optimizedImageUrl(news.image,1200,"social");
 
 }
 
@@ -268,9 +267,9 @@ rel="noopener noreferrer">
 </div>
 
 <img
-src="${escapeHTML(news.image)}"
+src="${escapeHTML(optimizedImageUrl(news.image,1600))}"
 alt="${escapeHTML(news.title)}"
-class="single-image">
+class="single-image" width="1200" height="675" fetchpriority="high">
 
 <div class="summary">
 
@@ -364,7 +363,9 @@ const q = query(
 
 collection(db,"news"),
 
-orderBy("createdAt","desc")
+where("category","==",news.category),
+
+limit(20)
 
 );
 
@@ -376,13 +377,15 @@ relatedBox.innerHTML="";
 
 let count = 0;
 
-snapshot.forEach((item)=>{
+const relatedDocuments = [...snapshot.docs].sort(
+(a,b)=>(b.data().createdAt || 0)-(a.data().createdAt || 0)
+);
+
+relatedDocuments.forEach((item)=>{
 
 if(item.id===id) return;
 
 const data=item.data();
-if(data.category !== news.category) return;
-
 if(count>=5) return;
 
 count++;
@@ -394,7 +397,7 @@ href="news.html?id=${encodeURIComponent(item.id)}"
 class="related-card">
 
 <img
-src="${escapeHTML(data.image)}"
+src="${escapeHTML(optimizedImageUrl(data.image,480))}"
 alt="${escapeHTML(data.title)}"
 loading="lazy"
 decoding="async">

@@ -5,6 +5,7 @@
 // image URL is still escaped before being placed in an img tag.
 
 import { escapeHTML } from "./escape-html.js";
+import { optimizedImageUrl } from "./image-utils.js";
 
 const YOUTUBE_ID_RE = /^[a-zA-Z0-9_-]{11}$/;
 
@@ -69,7 +70,7 @@ function youtubeEmbedHTML(videoId) {
 }
 
 function imageEmbedHTML(url) {
-  const safeUrl = escapeHTML(url);
+  const safeUrl = escapeHTML(optimizedImageUrl(url, 1400));
   return `<div class="content-image-wrap"><img src="${safeUrl}" alt="" loading="lazy" class="content-image"></div>`;
 }
 

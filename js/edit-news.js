@@ -1,37 +1,23 @@
 import { db } from "./firebase.js";
-import { auth } from "./auth.js";
+import { requireAdmin } from "./auth.js";
 import { attachImagePaste } from "./paste-image-upload.js";
+import { uploadImage } from "./cloudinary-upload.js";
 
 import {
   doc,
   getDoc,
-  updateDoc
+  updateDoc,
+  collection,
+  getDocs,
+  query,
+  where,
+  writeBatch
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
-
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
 
-const ADMIN_EMAIL = "thekhabarthread@gmail.com";
-
-// Make sure Firebase Auth has actually restored the signed-in
-// session on this page before we let the user submit an update.
-// Without this, add/edit pages had no Auth instance initialized
-// at all, so Firestore writes went out with no identity attached
-// and were rejected by the security rules ("Missing or
-// insufficient permissions"), even for a correctly logged-in admin.
-onAuthStateChanged(auth, (user) => {
-  if (!user) {
-    alert("Aap login nahi hain. Login page par bhej rahe hain.");
-    window.location.href = "login.html";
-    return;
-  }
-  if (user.email !== ADMIN_EMAIL) {
-    alert("Access Denied");
-    window.location.href = "login.html";
-  }
-});
+requireAdmin();
 
 attachImagePaste(document.getElementById("content"));
 
@@ -110,29 +96,12 @@ form.addEventListener("submit", async (e) => {
             document.getElementById("image").files[0];
 
         if (imageFile) {
-
-            const formData = new FormData();
-
-            formData.append("file", imageFile);
-
-            formData.append(
-                "upload_preset",
-                "thekhabarthread"
-            );
-
-            const upload = await fetch(
-                "https://api.cloudinary.com/v1_1/m9332fjb/image/upload",
-                {
-                    method: "POST",
-                    body: formData
-                }
-            );
-
-            const imageData = await upload.json();
-
-            image = imageData.secure_url;
+            image = await uploadImage(imageFile);
 
         }
+
+        const featured = document.getElementById("featured").checked;
+        const breaking = document.getElementById("breaking").checked;
 
         await updateDoc(doc(db, "news", id), {
 
@@ -146,13 +115,16 @@ form.addEventListener("submit", async (e) => {
 
             image: image,
 
-            featured:
-                document.getElementById("featured").checked,
+            featured,
 
-            breaking:
-                document.getElementById("breaking").checked
+            breaking,
+
+            updatedAt: Date.now()
 
         });
+
+        if (featured) await keepOnlyOneFlag("featured", id);
+        if (breaking) await keepOnlyOneFlag("breaking", id);
 
         alert("News Updated Successfully");
 
@@ -169,3 +141,15 @@ form.addEventListener("submit", async (e) => {
     }
 
 });
+
+async function keepOnlyOneFlag(field, keepId) {
+    const snapshot = await getDocs(query(collection(db, "news"), where(field, "==", true)));
+    const batch = writeBatch(db);
+    let changes = 0;
+    snapshot.forEach((item) => {
+        if (item.id === keepId) return;
+        batch.update(item.ref, { [field]: false, updatedAt: Date.now() });
+        changes++;
+    });
+    if (changes) await batch.commit();
+}
