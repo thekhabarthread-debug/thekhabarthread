@@ -1,23 +1,16 @@
-import { googleLogin } from "./auth.js";
+import { googleLogin, isAdminUser } from "./auth.js";
 
 const loginBtn = document.getElementById("loginBtn");
 
-const ADMIN_EMAIL = "thekhabarthread@gmail.com";   // अपना Gmail
-
 loginBtn.addEventListener("click", async () => {
+  const user = await googleLogin();
 
-    const user = await googleLogin();
+  if (!user) return;
 
-    if (!user) return;
+  if (!isAdminUser(user)) {
+    alert("Access Denied — sirf admin account se login karein.");
+    return;
+  }
 
-    if (user.email !== ADMIN_EMAIL) {
-
-        alert("Access Denied");
-
-        return;
-
-    }
-
-    window.location.href = "dashboard.html";
-
+  window.location.href = "dashboard.html";
 });
