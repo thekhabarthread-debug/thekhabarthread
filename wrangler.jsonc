@@ -1,22 +1,12 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "thekhabarthread",
-  "main": "worker.js",
-  "compatibility_date": "2026-07-27",
+  "compatibility_date": "2026-07-26",
   "observability": {
     "enabled": true
   },
-  "vars": {
-    "FIREBASE_PROJECT_ID": "the-khabar-thread",
-    "FIREBASE_API_KEY": "AIzaSyDX-1DUOIoKEUUw_Nwj_A4N54Q48Aec2EQ",
-    "CLOUDINARY_CLOUD_NAME": "m9332fjb",
-    "CLOUDINARY_UPLOAD_PRESET": "thekhabarthread",
-    "ADMIN_EMAIL": "thekhabarthread@gmail.com"
-  },
   "assets": {
     "directory": ".",
-    "binding": "ASSETS",
-    "run_worker_first": true,
     "html_handling": "none"
   },
   "compatibility_flags": [

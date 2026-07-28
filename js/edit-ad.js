@@ -1,6 +1,5 @@
 import { db } from "./firebase.js";
-import { requireAdmin } from "./auth.js";
-import { uploadImage } from "./cloudinary-upload.js";
+import { auth } from "./auth.js";
 
 import {
   doc,
@@ -8,7 +7,21 @@ import {
   updateDoc
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
-requireAdmin();
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
+
+const ADMIN_EMAIL = "thekhabarthread@gmail.com";
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    alert("Aap login nahi hain. Login page par bhej rahe hain.");
+    window.location.href = "login.html";
+    return;
+  }
+  if (user.email !== ADMIN_EMAIL) {
+    alert("Access Denied");
+    window.location.href = "login.html";
+  }
+});
 
 const params = new URLSearchParams(window.location.search);
 const id = params.get("id");
@@ -81,7 +94,24 @@ form.addEventListener("submit", async (e) => {
         const imageFile = document.getElementById("image").files[0];
 
         if (imageFile) {
-            image = await uploadImage(imageFile);
+
+            const formData = new FormData();
+
+            formData.append("file", imageFile);
+
+            formData.append("upload_preset", "thekhabarthread");
+
+            const upload = await fetch(
+                "https://api.cloudinary.com/v1_1/m9332fjb/image/upload",
+                {
+                    method: "POST",
+                    body: formData
+                }
+            );
+
+            const imageData = await upload.json();
+
+            image = imageData.secure_url;
 
         }
 

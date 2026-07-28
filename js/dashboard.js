@@ -1,14 +1,30 @@
-import { requireAdmin, logout } from "./auth.js";
+import { auth, logout } from "./auth.js";
 import { db } from "./firebase.js";
+
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
 
 import {
 collection,
 getDocs
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
+const ADMIN_EMAIL = "thekhabarthread@gmail.com";
+
 const logoutBtn = document.getElementById("logoutBtn");
 
-requireAdmin(async () => {
+onAuthStateChanged(auth, async (user) => {
+
+    if (!user) {
+        window.location.href = "login.html";
+        return;
+    }
+
+    if (user.email !== ADMIN_EMAIL) {
+        alert("Access Denied");
+        window.location.href = "login.html";
+        return;
+    }
+
     console.log("Admin Login Successful");
 
     loadStats();

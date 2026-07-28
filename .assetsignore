@@ -6,12 +6,6 @@
 .wrangler
 .wrangler/**
 wrangler.jsonc
-worker.js
-package.json
-package-lock.json
-DEPLOY.md
-firebase.json
-.firebaserc
 node_modules
 node_modules/**
 README.md

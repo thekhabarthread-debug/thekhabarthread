@@ -4,7 +4,8 @@
 // is inserted at the cursor on its own line — so content-embeds.js
 // picks it up and shows it inline wherever it was pasted.
 
-import { uploadImage } from "./cloudinary-upload.js";
+const CLOUDINARY_UPLOAD_URL = "https://api.cloudinary.com/v1_1/m9332fjb/image/upload";
+const CLOUDINARY_PRESET = "thekhabarthread";
 
 export function attachImagePaste(textarea) {
 
@@ -51,8 +52,22 @@ export function attachImagePaste(textarea) {
 
     try {
 
-      const imageUrl = await uploadImage(imageFile);
-      textarea.value = textarea.value.replace(token, imageUrl);
+      const formData = new FormData();
+      formData.append("file", imageFile);
+      formData.append("upload_preset", CLOUDINARY_PRESET);
+
+      const uploadResponse = await fetch(CLOUDINARY_UPLOAD_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      const imageData = await uploadResponse.json();
+
+      if (!imageData.secure_url) {
+        throw new Error("Cloudinary upload did not return a URL");
+      }
+
+      textarea.value = textarea.value.replace(token, imageData.secure_url);
 
     } catch (error) {
 

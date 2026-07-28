@@ -6,17 +6,18 @@ PART 1
 
 import { db } from "./firebase.js";
 import { escapeHTML } from "./escape-html.js";
-import { renderContentWithEmbeds } from "./content-embeds.js";
 import { optimizedImageUrl } from "./image-utils.js";
+import { renderContentWithEmbeds } from "./content-embeds.js";
 
 import {
 doc,
 getDoc,
+updateDoc,
+increment,
 collection,
 getDocs,
 query,
-where,
-limit
+orderBy
 } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-firestore.js";
 
 /*=========================================
@@ -61,11 +62,12 @@ return;
 
 const news = docSnap.data();
 
-// Analytics is the source of truth for article views. Firestore
-// counters are not writable by public visitors, preventing fake views.
-if (typeof window.gtag === "function") {
-window.gtag("event","article_view",{article_id:id,article_title:news.title});
-}
+// Fire-and-forget view counter — shown next to each article in the
+// admin All News page. Never blocks or breaks the article render
+// if it fails (e.g. offline, or rules reject it).
+updateDoc(docRef,{ views: increment(1) }).catch((err)=>{
+console.warn("View counter update failed:",err);
+});
 
 const schema=document.getElementById("news-schema");
 
@@ -79,11 +81,11 @@ schema.textContent=JSON.stringify({
 
 headline:news.title,
 
-image:[optimizedImageUrl(news.image,1200,"social")],
+image:[news.image],
 
-datePublished:new Date(news.createdAt || Date.now()).toISOString(),
+datePublished:news.date,
 
-dateModified:new Date(news.updatedAt || news.createdAt || Date.now()).toISOString(),
+dateModified:news.date,
 
 description:news.summary,
 
@@ -141,7 +143,7 @@ const canonical = document.getElementById("canonical-link");
 
 if(canonical){
 
-canonical.href = `https://thekhabarthread.in/news.html?id=${encodeURIComponent(id)}`;
+canonical.href = window.location.href;
 
 }
 
@@ -164,14 +166,26 @@ ogDescription.content=news.summary;
 
 if(ogImage){
 
-ogImage.content=optimizedImageUrl(news.image,1200,"social");
+ogImage.content=news.image;
 
 }
 
 if(ogUrl){
 
-ogUrl.content=`https://thekhabarthread.in/news.html?id=${encodeURIComponent(id)}`;
+ogUrl.content=window.location.href;
 
+}
+
+const ogPublished = document.getElementById("og-published");
+const ogSection = document.getElementById("og-section");
+if (ogPublished) {
+  const d = news.createdAt
+    ? new Date(typeof news.createdAt === "number" ? news.createdAt : news.createdAt).toISOString()
+    : (news.date || "");
+  ogPublished.content = d;
+}
+if (ogSection) {
+  ogSection.content = news.category || "";
 }
 
 const twitterTitle=document.getElementById("twitter-title");
@@ -192,7 +206,7 @@ twitterDescription.content=news.summary;
 
 if(twitterImage){
 
-twitterImage.content=optimizedImageUrl(news.image,1200,"social");
+twitterImage.content=news.image;
 
 }
 
@@ -267,9 +281,9 @@ rel="noopener noreferrer">
 </div>
 
 <img
-src="${escapeHTML(optimizedImageUrl(news.image,1600))}"
+src="${escapeHTML(optimizedImageUrl(news.image, 1200))}"
 alt="${escapeHTML(news.title)}"
-class="single-image" width="1200" height="675" fetchpriority="high">
+class="single-image" onerror="this.onerror=null;this.src='assets/news/hero.png';">
 
 <div class="summary">
 
@@ -363,9 +377,7 @@ const q = query(
 
 collection(db,"news"),
 
-where("category","==",news.category),
-
-limit(20)
+orderBy("createdAt","desc")
 
 );
 
@@ -377,15 +389,13 @@ relatedBox.innerHTML="";
 
 let count = 0;
 
-const relatedDocuments = [...snapshot.docs].sort(
-(a,b)=>(b.data().createdAt || 0)-(a.data().createdAt || 0)
-);
-
-relatedDocuments.forEach((item)=>{
+snapshot.forEach((item)=>{
 
 if(item.id===id) return;
 
 const data=item.data();
+if(data.category !== news.category) return;
+
 if(count>=5) return;
 
 count++;
@@ -397,7 +407,7 @@ href="news.html?id=${encodeURIComponent(item.id)}"
 class="related-card">
 
 <img
-src="${escapeHTML(optimizedImageUrl(data.image,480))}"
+src="${escapeHTML(data.image)}"
 alt="${escapeHTML(data.title)}"
 loading="lazy"
 decoding="async">
