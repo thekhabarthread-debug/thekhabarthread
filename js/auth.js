@@ -49,9 +49,6 @@ export async function googleLogin() {
   }
 }
 
-
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.16.0/firebase-auth.js";
-
 /**
  * Ensures the visitor is the admin. Redirects to login otherwise.
  * Calls callback(user) when admin is confirmed.
