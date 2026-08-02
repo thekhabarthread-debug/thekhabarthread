@@ -94,6 +94,12 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://thekhabarthread.in/news.html?id=9KKLG4DG3ZmN8SoGKESg</loc>
+    <lastmod>2026-08-02</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://thekhabarthread.in/news.html?id=AoKT8Vwhbm3s3eRbt6SO</loc>
     <lastmod>2026-07-19</lastmod>
     <changefreq>daily</changefreq>
@@ -102,6 +108,12 @@
   <url>
     <loc>https://thekhabarthread.in/news.html?id=E5LOjnjjpoV5mcRwEMW6</loc>
     <lastmod>2026-07-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=Hc6CvuSsgkS8O3cplLAv</loc>
+    <lastmod>2026-08-02</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
