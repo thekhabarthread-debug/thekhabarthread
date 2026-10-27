@@ -130,8 +130,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://thekhabarthread.in/news.html?id=CC3JaPXmkAbqw3BDXthB</loc>
+    <lastmod>2026-10-27</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://thekhabarthread.in/news.html?id=E5LOjnjjpoV5mcRwEMW6</loc>
     <lastmod>2026-07-25</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://thekhabarthread.in/news.html?id=Eyws7zcXyp2oaIBuGqcB</loc>
+    <lastmod>2026-10-27</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.8</priority>
   </url>
